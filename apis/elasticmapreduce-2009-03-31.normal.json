@@ -10,7 +10,7 @@
     "timestampFormat":"unixTimestamp",
     "protocol":"json"
   },
-  "documentation":"<p> This is the <i>Amazon Elastic MapReduce API Reference</i>. This guide provides descriptions and samples of the Amazon Elastic MapReduce APIs.</p> <p>Amazon Elastic MapReduce (Amazon EMR) is a web service that makes it easy to process large amounts of data efficiently. Amazon EMR uses Hadoop processing combined with several AWS products to do tasks such as web indexing, data mining, log file analysis, machine learning, scientific simulation, and data warehousing.</p>",
+  "documentation":"<p>Amazon Elastic MapReduce (Amazon EMR) is a web service that makes it easy to process large amounts of data efficiently. Amazon EMR uses Hadoop processing combined with several AWS products to do tasks such as web indexing, data mining, log file analysis, machine learning, scientific simulation, and data warehousing.</p>",
   "operations":{
     "AddInstanceGroups":{
       "name":"AddInstanceGroups",
@@ -472,7 +472,7 @@
           "documentation":"<p>Indicates that an error occurred while processing the request and that the request was not completed.</p>"
         }
       ],
-      "documentation":"<p> TerminateJobFlows shuts a list of job flows down. When a job flow is shut down, any step not yet completed is canceled and the EC2 instances on which the job flow is running are stopped. Any log files not already saved are uploaded to Amazon S3 if a LogUri was specified when the job flow was created. </p> <p> The call to TerminateJobFlows is asynchronous. Depending on the configuration of the job flow, it may take up to 5-20 minutes for the job flow to completely terminate and release allocated resources, such as Amazon EC2 instances. </p>"
+      "documentation":"<p> TerminateJobFlows shuts a list of job flows down. When a job flow is shut down, any step not yet completed is canceled and the EC2 instances on which the job flow is running are stopped. Any log files not already saved are uploaded to Amazon S3 if a LogUri was specified when the job flow was created. </p> <p> The maximum number of JobFlows allowed is 10. The call to TerminateJobFlows is asynchronous. Depending on the configuration of the job flow, it may take up to 5-20 minutes for the job flow to completely terminate and release allocated resources, such as Amazon EC2 instances. </p>"
     }
   },
   "shapes":{
@@ -683,6 +683,14 @@
         "ServiceRole":{
           "shape":"String",
           "documentation":"<p>The IAM role that will be assumed by the Amazon EMR service to access AWS resources on your behalf.</p>"
+        },
+        "NormalizedInstanceHours":{
+          "shape":"Integer",
+          "documentation":"<p>An approximation of the cost of the job flow, represented in m1.small/hours. This value is incremented one time for every hour an m1.small instance runs. Larger instances are weighted more, so an EC2 instance that is roughly four times more expensive would result in the normalized instance hours being incremented by four. This result is only an approximation and does not reflect the actual billing rate.</p>"
+        },
+        "MasterPublicDnsName":{
+          "shape":"String",
+          "documentation":"<p>The public DNS name of the master Ec2 instance.</p>"
         }
       },
       "documentation":"<p>The detailed description of the cluster.</p>"
@@ -762,6 +770,10 @@
         "Status":{
           "shape":"ClusterStatus",
           "documentation":"<p>The details about the current status of the cluster.</p>"
+        },
+        "NormalizedInstanceHours":{
+          "shape":"Integer",
+          "documentation":"<p>An approximation of the cost of the job flow, represented in m1.small/hours. This value is incremented one time for every hour an m1.small instance runs. Larger instances are weighted more, so an EC2 instance that is roughly four times more expensive would result in the normalized instance hours being incremented by four. This result is only an approximation and does not reflect the actual billing rate.</p>"
         }
       },
       "documentation":"<p>The summary description of the cluster.</p>"
@@ -914,6 +926,22 @@
         "IamInstanceProfile":{
           "shape":"String",
           "documentation":"<p>The IAM role that was specified when the job flow was launched. The EC2 instances of the job flow assume this role.</p>"
+        },
+        "EmrManagedMasterSecurityGroup":{
+          "shape":"String",
+          "documentation":"<p>The identifier of the Amazon EC2 security group (managed by Amazon Elastic MapReduce) for the master node.</p>"
+        },
+        "EmrManagedSlaveSecurityGroup":{
+          "shape":"String",
+          "documentation":"<p>The identifier of the Amazon EC2 security group (managed by Amazon Elastic MapReduce) for the slave nodes.</p>"
+        },
+        "AdditionalMasterSecurityGroups":{
+          "shape":"StringList",
+          "documentation":"<p>A list of additional Amazon EC2 security group IDs for the master node.</p>"
+        },
+        "AdditionalSlaveSecurityGroups":{
+          "shape":"StringList",
+          "documentation":"<p>A list of additional Amazon EC2 security group IDs for the slave nodes.</p>"
         }
       },
       "documentation":"<p>Provides information about the EC2 instances in a cluster grouped by category. For example, key name, subnet ID, IAM instance profile, and so on.</p>"
@@ -1558,11 +1586,27 @@
         },
         "HadoopVersion":{
           "shape":"XmlStringMaxLen256",
-          "documentation":"<p>The Hadoop version for the job flow. Valid inputs are \"0.18\", \"0.20\", or \"0.20.205\". If you do not set this value, the default of 0.18 is used, unless the AmiVersion parameter is set in the RunJobFlow call, in which case the default version of Hadoop for that AMI version is used.</p>"
+          "documentation":"<p>The Hadoop version for the job flow. Valid inputs are \"0.18\", \"0.20\", \"0.20.205\", \"1.0.3\", \"2.2.0\", or \"2.4.0\". If you do not set this value, the default of 0.18 is used, unless the AmiVersion parameter is set in the RunJobFlow call, in which case the default version of Hadoop for that AMI version is used.</p>"
         },
         "Ec2SubnetId":{
           "shape":"XmlStringMaxLen256",
           "documentation":"<p> To launch the job flow in Amazon Virtual Private Cloud (Amazon VPC), set this parameter to the identifier of the Amazon VPC subnet where you want the job flow to launch. If you do not specify this value, the job flow is launched in the normal Amazon Web Services cloud, outside of an Amazon VPC. </p> <p> Amazon VPC currently does not support cluster compute quadruple extra large (cc1.4xlarge) instances. Thus you cannot specify the cc1.4xlarge instance type for nodes of a job flow launched in a Amazon VPC. </p>"
+        },
+        "EmrManagedMasterSecurityGroup":{
+          "shape":"XmlStringMaxLen256",
+          "documentation":"<p>The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce) for the master node.</p>"
+        },
+        "EmrManagedSlaveSecurityGroup":{
+          "shape":"XmlStringMaxLen256",
+          "documentation":"<p>The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce) for the slave nodes.</p>"
+        },
+        "AdditionalMasterSecurityGroups":{
+          "shape":"SecurityGroupsList",
+          "documentation":"<p>A list of additional Amazon EC2 security group IDs for the master node.</p>"
+        },
+        "AdditionalSlaveSecurityGroups":{
+          "shape":"SecurityGroupsList",
+          "documentation":"<p>A list of additional Amazon EC2 security group IDs for the slave nodes.</p>"
         }
       },
       "documentation":"<p>A description of the Amazon EC2 instance running the job flow. A valid JobFlowInstancesConfig must contain at least InstanceGroups, which is the recommended configuration. However, a valid alternative is to have MasterInstanceType, SlaveInstanceType, and InstanceCount (all three must be present).</p>"
@@ -1791,6 +1835,10 @@
           "shape":"StepStateList",
           "documentation":"<p>The filter to limit the step list based on certain states.</p>"
         },
+        "StepIds":{
+          "shape":"XmlStringList",
+          "documentation":"<p>The filter to limit the step list based on the identifier of the steps.</p>"
+        },
         "Marker":{
           "shape":"Marker",
           "documentation":"<p>The pagination token that indicates the next set of results to retrieve.</p>"
@@ -1956,6 +2004,10 @@
         }
       },
       "documentation":"<p>Configuration of the script to run during a bootstrap action.</p>"
+    },
+    "SecurityGroupsList":{
+      "type":"list",
+      "member":{"shape":"XmlStringMaxLen256"}
     },
     "SetTerminationProtectionInput":{
       "type":"structure",
@@ -2175,6 +2227,14 @@
         "Name":{
           "shape":"String",
           "documentation":"<p>The name of the cluster step. </p>"
+        },
+        "Config":{
+          "shape":"HadoopStepConfig",
+          "documentation":"<p>The Hadoop job configuration of the cluster step. </p>"
+        },
+        "ActionOnFailure":{
+          "shape":"ActionOnFailure",
+          "documentation":"<p>This specifies what action to take when the cluster step fails. Possible values are TERMINATE_CLUSTER, CANCEL_AND_WAIT, and CONTINUE. </p>"
         },
         "Status":{
           "shape":"StepStatus",

@@ -1,14 +1,15 @@
 {
+  "version":"2.0",
   "metadata":{
-    "apiVersion":"2014-09-01",
+    "apiVersion":"2014-10-31",
     "endpointPrefix":"rds",
     "serviceAbbreviation":"Amazon RDS",
     "serviceFullName":"Amazon Relational Database Service",
     "signatureVersion":"v4",
-    "xmlNamespace":"http://rds.amazonaws.com/doc/2014-09-01/",
+    "xmlNamespace":"http://rds.amazonaws.com/doc/2014-10-31/",
     "protocol":"query"
   },
-  "documentation":"<fullname>Amazon Relational Database Service</fullname> <p> Amazon Relational Database Service (Amazon RDS) is a web service that makes it easier to set up, operate, and scale a relational database in the cloud. It provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database administration tasks, freeing up developers to focus on what makes their applications and businesses unique. </p> <p> Amazon RDS gives you access to the capabilities of a MySQL, PostgreSQL, Microsoft SQL Server, or Oracle database server. This means the code, applications, and tools you already use today with your existing databases work with Amazon RDS without modification. Amazon RDS automatically backs up your database and maintains the database software that powers your DB instance. Amazon RDS is flexible: you can scale your database instance's compute resources and storage capacity to meet your application's demand. As with all Amazon Web Services, there are no up-front investments, and you pay only for the resources you use. </p> <p> This is an interface reference for Amazon RDS. It contains documentation for a programming or command line interface you can use to manage Amazon RDS. Note that Amazon RDS is asynchronous, which means that some interfaces may require techniques such as polling or callback functions to determine when a command has been applied. In this reference, the parameter descriptions indicate whether a command is applied immediately, on the next instance reboot, or during the maintenance window. For a summary of the Amazon RDS interfaces, go to <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Interfaces\">Available RDS Interfaces</a>. </p>",
+  "documentation":"<fullname>Amazon Relational Database Service</fullname> <p> Amazon Relational Database Service (Amazon RDS) is a web service that makes it easier to set up, operate, and scale a relational database in the cloud. It provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database administration tasks, freeing up developers to focus on what makes their applications and businesses unique. </p> <p> Amazon RDS gives you access to the capabilities of a MySQL, PostgreSQL, Microsoft SQL Server, Oracle, or Aurora database server. This means the code, applications, and tools you already use today with your existing databases work with Amazon RDS without modification. Amazon RDS automatically backs up your database and maintains the database software that powers your DB instance. Amazon RDS is flexible: you can scale your database instance's compute resources and storage capacity to meet your application's demand. As with all Amazon Web Services, there are no up-front investments, and you pay only for the resources you use. </p> <p> This is an interface reference for Amazon RDS. It contains documentation for a programming or command line interface you can use to manage Amazon RDS. Note that Amazon RDS is asynchronous, which means that some interfaces may require techniques such as polling or callback functions to determine when a command has been applied. In this reference, the parameter descriptions indicate whether a command is applied immediately, on the next instance reboot, or during the maintenance window. For a summary of the Amazon RDS interfaces, go to <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Interfaces\">Available RDS Interfaces</a>. </p>",
   "operations":{
     "AddSourceIdentifierToSubscription":{
       "name":"AddSourceIdentifierToSubscription",
@@ -84,6 +85,36 @@
       ],
       "documentation":"<p> Adds metadata tags to an Amazon RDS resource. These tags can also be used with cost allocation reporting to track cost associated with Amazon RDS resources, or used in Condition statement in IAM policy for Amazon RDS.</p> <p>For an overview on tagging Amazon RDS resources, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html\">Tagging Amazon RDS Resources</a>.</p>"
     },
+    "ApplyPendingMaintenanceAction":{
+      "name":"ApplyPendingMaintenanceAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"ApplyPendingMaintenanceActionMessage",
+        "documentation":"<p></p>"
+      },
+      "output":{
+        "shape":"ApplyPendingMaintenanceActionResult",
+        "wrapper":true,
+        "documentation":"<p>Describes the pending maintenance actions for a resource.</p>",
+        "resultWrapper":"ApplyPendingMaintenanceActionResult"
+      },
+      "errors":[
+        {
+          "shape":"ResourceNotFoundFault",
+          "error":{
+            "code":"ResourceNotFoundFault",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The specified resource ID was not found. </p>"
+        }
+      ],
+      "documentation":"<p>Applies a pending maintenance action to a resource (for example, a DB instance).</p>"
+    },
     "AuthorizeDBSecurityGroupIngress":{
       "name":"AuthorizeDBSecurityGroupIngress",
       "http":{
@@ -92,12 +123,12 @@
       },
       "input":{
         "shape":"AuthorizeDBSecurityGroupIngressMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"AuthorizeDBSecurityGroupIngressResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>DescribeDBSecurityGroups</a></li> <li><a>AuthorizeDBSecurityGroupIngress</a></li> <li><a>CreateDBSecurityGroup</a></li> <li><a>RevokeDBSecurityGroupIngress</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSecurityGroups</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>DescribeDBSecurityGroups</a> </li> <li> <a>AuthorizeDBSecurityGroupIngress</a> </li> <li> <a>CreateDBSecurityGroup</a> </li> <li> <a>RevokeDBSecurityGroupIngress</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSecurityGroups</a> action.</p>",
         "resultWrapper":"AuthorizeDBSecurityGroupIngressResult"
       },
       "errors":[
@@ -152,12 +183,12 @@
       },
       "input":{
         "shape":"CopyDBParameterGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"CopyDBParameterGroupResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the <a>CreateDBParameterGroup</a> action. </p> <p> This data type is used as a request parameter in the <a>DeleteDBParameterGroup</a> action, and as a response element in the <a>DescribeDBParameterGroups</a> action. </p>",
+        "documentation":"<p>Contains the result of a successful invocation of the <a>CreateDBParameterGroup</a> action. </p> <p>This data type is used as a request parameter in the <a>DeleteDBParameterGroup</a> action, and as a response element in the <a>DescribeDBParameterGroups</a> action. </p>",
         "resultWrapper":"CopyDBParameterGroupResult"
       },
       "errors":[
@@ -192,7 +223,7 @@
           "documentation":"<p> Request would result in user exceeding the allowed number of DB parameter groups. </p>"
         }
       ],
-      "documentation":"<p> Copies the specified DBParameterGroup. </p>"
+      "documentation":"<p> Copies the specified DB parameter group. </p>"
     },
     "CopyDBSnapshot":{
       "name":"CopyDBSnapshot",
@@ -202,12 +233,12 @@
       },
       "input":{
         "shape":"CopyDBSnapshotMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"CopyDBSnapshotResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBSnapshot</a></li> <li><a>DeleteDBSnapshot</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSnapshots</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBSnapshot</a> </li> <li> <a>DeleteDBSnapshot</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSnapshots</a> action.</p>",
         "resultWrapper":"CopyDBSnapshotResult"
       },
       "errors":[
@@ -262,12 +293,12 @@
       },
       "input":{
         "shape":"CopyOptionGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"CopyOptionGroupResult",
         "wrapper":true,
-        "documentation":"<p> </p>",
+        "documentation":"<p></p>",
         "resultWrapper":"CopyOptionGroupResult"
       },
       "errors":[
@@ -285,7 +316,7 @@
           "shape":"OptionGroupNotFoundFault",
           "error":{
             "code":"OptionGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -302,7 +333,7 @@
           "documentation":"<p> The quota of 20 option groups was exceeded for this AWS account. </p>"
         }
       ],
-      "documentation":"<p> Copies the specified Option Group. </p>"
+      "documentation":"<p>Copies the specified option group. </p>"
     },
     "CreateDBInstance":{
       "name":"CreateDBInstance",
@@ -312,12 +343,12 @@
       },
       "input":{
         "shape":"CreateDBInstanceMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"CreateDBInstanceResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBInstance</a></li> <li><a>DeleteDBInstance</a></li> <li><a>ModifyDBInstance</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBInstance</a> </li> <li> <a>DeleteDBInstance</a> </li> <li> <a>ModifyDBInstance</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
         "resultWrapper":"CreateDBInstanceResult"
       },
       "errors":[
@@ -385,7 +416,7 @@
           "shape":"DBSubnetGroupNotFoundFault",
           "error":{
             "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -435,7 +466,7 @@
           "shape":"OptionGroupNotFoundFault",
           "error":{
             "code":"OptionGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -460,6 +491,16 @@
           },
           "exception":true,
           "documentation":"<p> Specified CIDRIP or EC2 security group is not authorized for the specified DB security group. </p> <p>RDS may not also be authorized via IAM to perform necessary actions on your behalf.</p>"
+        },
+        {
+          "shape":"KMSKeyNotAccessibleFault",
+          "error":{
+            "code":"KMSKeyNotAccessibleFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> Error accessing KMS key. </p>"
         }
       ],
       "documentation":"<p> Creates a new DB instance. </p>"
@@ -474,7 +515,7 @@
       "output":{
         "shape":"CreateDBInstanceReadReplicaResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBInstance</a></li> <li><a>DeleteDBInstance</a></li> <li><a>ModifyDBInstance</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBInstance</a> </li> <li> <a>DeleteDBInstance</a> </li> <li> <a>ModifyDBInstance</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
         "resultWrapper":"CreateDBInstanceReadReplicaResult"
       },
       "errors":[
@@ -562,7 +603,7 @@
           "shape":"DBSubnetGroupNotFoundFault",
           "error":{
             "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -612,7 +653,7 @@
           "shape":"OptionGroupNotFoundFault",
           "error":{
             "code":"OptionGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -647,9 +688,19 @@
           },
           "exception":true,
           "documentation":"<p> <i>StorageType</i> specified cannot be associated with the DB Instance. </p>"
+        },
+        {
+          "shape":"KMSKeyNotAccessibleFault",
+          "error":{
+            "code":"KMSKeyNotAccessibleFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> Error accessing KMS key. </p>"
         }
       ],
-      "documentation":"<p> Creates a DB instance that acts as a read replica of a source DB instance. </p> <p> All read replica DB instances are created as Single-AZ deployments with backups disabled. All other DB instance attributes (including DB security groups and DB parameter groups) are inherited from the source DB instance, except as specified below. </p> <important> <p> The source DB instance must have backup retention enabled. </p> </important>"
+      "documentation":"<p> Creates a DB instance that acts as a Read Replica of a source DB instance. </p> <p> All Read Replica DB instances are created as Single-AZ deployments with backups disabled. All other DB instance attributes (including DB security groups and DB parameter groups) are inherited from the source DB instance, except as specified below. </p> <important> <p> The source DB instance must have backup retention enabled. </p> </important>"
     },
     "CreateDBParameterGroup":{
       "name":"CreateDBParameterGroup",
@@ -659,12 +710,12 @@
       },
       "input":{
         "shape":"CreateDBParameterGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"CreateDBParameterGroupResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the <a>CreateDBParameterGroup</a> action. </p> <p> This data type is used as a request parameter in the <a>DeleteDBParameterGroup</a> action, and as a response element in the <a>DescribeDBParameterGroups</a> action. </p>",
+        "documentation":"<p>Contains the result of a successful invocation of the <a>CreateDBParameterGroup</a> action. </p> <p>This data type is used as a request parameter in the <a>DeleteDBParameterGroup</a> action, and as a response element in the <a>DescribeDBParameterGroups</a> action. </p>",
         "resultWrapper":"CreateDBParameterGroupResult"
       },
       "errors":[
@@ -699,12 +750,12 @@
       },
       "input":{
         "shape":"CreateDBSecurityGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"CreateDBSecurityGroupResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>DescribeDBSecurityGroups</a></li> <li><a>AuthorizeDBSecurityGroupIngress</a></li> <li><a>CreateDBSecurityGroup</a></li> <li><a>RevokeDBSecurityGroupIngress</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSecurityGroups</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>DescribeDBSecurityGroups</a> </li> <li> <a>AuthorizeDBSecurityGroupIngress</a> </li> <li> <a>CreateDBSecurityGroup</a> </li> <li> <a>RevokeDBSecurityGroupIngress</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSecurityGroups</a> action.</p>",
         "resultWrapper":"CreateDBSecurityGroupResult"
       },
       "errors":[
@@ -749,12 +800,12 @@
       },
       "input":{
         "shape":"CreateDBSnapshotMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"CreateDBSnapshotResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBSnapshot</a></li> <li><a>DeleteDBSnapshot</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSnapshots</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBSnapshot</a> </li> <li> <a>DeleteDBSnapshot</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSnapshots</a> action.</p>",
         "resultWrapper":"CreateDBSnapshotResult"
       },
       "errors":[
@@ -809,12 +860,12 @@
       },
       "input":{
         "shape":"CreateDBSubnetGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"CreateDBSubnetGroupResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBSubnetGroup</a></li> <li><a>ModifyDBSubnetGroup</a></li> <li><a>DescribeDBSubnetGroups</a></li> <li><a>DeleteDBSubnetGroup</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSubnetGroups</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBSubnetGroup</a> </li> <li> <a>ModifyDBSubnetGroup</a> </li> <li> <a>DescribeDBSubnetGroups</a> </li> <li> <a>DeleteDBSubnetGroup</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSubnetGroups</a> action.</p>",
         "resultWrapper":"CreateDBSubnetGroupResult"
       },
       "errors":[
@@ -974,7 +1025,7 @@
       "output":{
         "shape":"CreateOptionGroupResult",
         "wrapper":true,
-        "documentation":"<p> </p>",
+        "documentation":"<p></p>",
         "resultWrapper":"CreateOptionGroupResult"
       },
       "errors":[
@@ -1009,12 +1060,12 @@
       },
       "input":{
         "shape":"DeleteDBInstanceMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"DeleteDBInstanceResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBInstance</a></li> <li><a>DeleteDBInstance</a></li> <li><a>ModifyDBInstance</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBInstance</a> </li> <li> <a>DeleteDBInstance</a> </li> <li> <a>ModifyDBInstance</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
         "resultWrapper":"DeleteDBInstanceResult"
       },
       "errors":[
@@ -1069,7 +1120,7 @@
       },
       "input":{
         "shape":"DeleteDBParameterGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "errors":[
         {
@@ -1093,7 +1144,7 @@
           "documentation":"<p> <i>DBParameterGroupName</i> does not refer to an existing DB parameter group. </p>"
         }
       ],
-      "documentation":"<p> Deletes a specified DBParameterGroup. The DBParameterGroup to be deleted cannot be associated with any DB instances. </p> <note> The specified DB parameter group cannot be associated with any DB instances. </note>"
+      "documentation":"<p> Deletes a specified DBParameterGroup. The DBParameterGroup to be deleted cannot be associated with any DB instances. </p>"
     },
     "DeleteDBSecurityGroup":{
       "name":"DeleteDBSecurityGroup",
@@ -1103,7 +1154,7 @@
       },
       "input":{
         "shape":"DeleteDBSecurityGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "errors":[
         {
@@ -1137,12 +1188,12 @@
       },
       "input":{
         "shape":"DeleteDBSnapshotMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"DeleteDBSnapshotResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBSnapshot</a></li> <li><a>DeleteDBSnapshot</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSnapshots</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBSnapshot</a> </li> <li> <a>DeleteDBSnapshot</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSnapshots</a> action.</p>",
         "resultWrapper":"DeleteDBSnapshotResult"
       },
       "errors":[
@@ -1177,7 +1228,7 @@
       },
       "input":{
         "shape":"DeleteDBSubnetGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "errors":[
         {
@@ -1204,7 +1255,7 @@
           "shape":"DBSubnetGroupNotFoundFault",
           "error":{
             "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -1261,14 +1312,14 @@
       },
       "input":{
         "shape":"DeleteOptionGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "errors":[
         {
           "shape":"OptionGroupNotFoundFault",
           "error":{
             "code":"OptionGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -1286,6 +1337,52 @@
         }
       ],
       "documentation":"<p> Deletes an existing option group. </p>"
+    },
+    "DescribeAccountAttributes":{
+      "name":"DescribeAccountAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"DescribeAccountAttributesMessage",
+        "documentation":"<p></p>"
+      },
+      "output":{
+        "shape":"AccountAttributesMessage",
+        "documentation":"<p>Data returned by the <b>DescribeAccountAttributes</b> action.</p>",
+        "resultWrapper":"DescribeAccountAttributesResult"
+      },
+      "documentation":"<p>Lists all of the attributes for a customer account. The attributes include Amazon RDS quotas for the account, such as the number of DB instances allowed. The description for a quota includes the quota name, current usage toward that quota, and the quota's maximum value. </p> <p>This command does not take any parameters.</p>"
+    },
+    "DescribeCertificates":{
+      "name":"DescribeCertificates",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"DescribeCertificatesMessage",
+        "documentation":"<p></p>"
+      },
+      "output":{
+        "shape":"CertificateMessage",
+        "documentation":"<p>Data returned by the <b>DescribeCertificates</b> action.</p>",
+        "resultWrapper":"DescribeCertificatesResult"
+      },
+      "errors":[
+        {
+          "shape":"CertificateNotFoundFault",
+          "error":{
+            "code":"CertificateNotFound",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p><i>CertificateIdentifier</i> does not refer to an existing certificate. </p>"
+        }
+      ],
+      "documentation":"<p> Lists the set of CA certificates provided by Amazon RDS for this AWS account. </p>"
     },
     "DescribeDBEngineVersions":{
       "name":"DescribeDBEngineVersions",
@@ -1309,7 +1406,7 @@
       },
       "input":{
         "shape":"DescribeDBInstancesMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"DBInstanceMessage",
@@ -1338,7 +1435,7 @@
       },
       "input":{
         "shape":"DescribeDBLogFilesMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"DescribeDBLogFilesResponse",
@@ -1367,7 +1464,7 @@
       },
       "input":{
         "shape":"DescribeDBParameterGroupsMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"DBParameterGroupsMessage",
@@ -1422,7 +1519,7 @@
       },
       "input":{
         "shape":"DescribeDBSecurityGroupsMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"DBSecurityGroupMessage",
@@ -1451,7 +1548,7 @@
       },
       "input":{
         "shape":"DescribeDBSnapshotsMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"DBSnapshotMessage",
@@ -1480,7 +1577,7 @@
       },
       "input":{
         "shape":"DescribeDBSubnetGroupsMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"DBSubnetGroupMessage",
@@ -1492,7 +1589,7 @@
           "shape":"DBSubnetGroupNotFoundFault",
           "error":{
             "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -1509,7 +1606,7 @@
       },
       "input":{
         "shape":"DescribeEngineDefaultParametersMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"DescribeEngineDefaultParametersResult",
@@ -1573,7 +1670,7 @@
       },
       "input":{
         "shape":"DescribeEventsMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"EventsMessage",
@@ -1590,11 +1687,11 @@
       },
       "input":{
         "shape":"DescribeOptionGroupOptionsMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"OptionGroupOptionsMessage",
-        "documentation":"<p> </p>",
+        "documentation":"<p></p>",
         "resultWrapper":"DescribeOptionGroupOptionsResult"
       },
       "documentation":"<p> Describes all available options. </p>"
@@ -1607,7 +1704,7 @@
       },
       "input":{
         "shape":"DescribeOptionGroupsMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"OptionGroups",
@@ -1619,7 +1716,7 @@
           "shape":"OptionGroupNotFoundFault",
           "error":{
             "code":"OptionGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -1636,7 +1733,7 @@
       },
       "input":{
         "shape":"DescribeOrderableDBInstanceOptionsMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"OrderableDBInstanceOptionsMessage",
@@ -1644,6 +1741,35 @@
         "resultWrapper":"DescribeOrderableDBInstanceOptionsResult"
       },
       "documentation":"<p> Returns a list of orderable DB instance options for the specified engine. </p>"
+    },
+    "DescribePendingMaintenanceActions":{
+      "name":"DescribePendingMaintenanceActions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"DescribePendingMaintenanceActionsMessage",
+        "documentation":"<p></p>"
+      },
+      "output":{
+        "shape":"PendingMaintenanceActionsMessage",
+        "documentation":"<p>Data returned from the <b>DescribePendingMaintenanceActions</b> action.</p>",
+        "resultWrapper":"DescribePendingMaintenanceActionsResult"
+      },
+      "errors":[
+        {
+          "shape":"ResourceNotFoundFault",
+          "error":{
+            "code":"ResourceNotFoundFault",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The specified resource ID was not found. </p>"
+        }
+      ],
+      "documentation":"<p>Returns a list of resources (for example, DB instances) that have at least one pending maintenance action.</p>"
     },
     "DescribeReservedDBInstances":{
       "name":"DescribeReservedDBInstances",
@@ -1653,7 +1779,7 @@
       },
       "input":{
         "shape":"DescribeReservedDBInstancesMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"ReservedDBInstanceMessage",
@@ -1682,7 +1808,7 @@
       },
       "input":{
         "shape":"DescribeReservedDBInstancesOfferingsMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"ReservedDBInstancesOfferingMessage",
@@ -1711,7 +1837,7 @@
       },
       "input":{
         "shape":"DownloadDBLogFilePortionMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"DownloadDBLogFilePortionDetails",
@@ -1779,12 +1905,12 @@
       },
       "input":{
         "shape":"ModifyDBInstanceMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"ModifyDBInstanceResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBInstance</a></li> <li><a>DeleteDBInstance</a></li> <li><a>ModifyDBInstance</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBInstance</a> </li> <li> <a>DeleteDBInstance</a> </li> <li> <a>ModifyDBInstance</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
         "resultWrapper":"ModifyDBInstanceResult"
       },
       "errors":[
@@ -1892,7 +2018,7 @@
           "shape":"OptionGroupNotFoundFault",
           "error":{
             "code":"OptionGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -1927,6 +2053,16 @@
           },
           "exception":true,
           "documentation":"<p> Specified CIDRIP or EC2 security group is not authorized for the specified DB security group. </p> <p>RDS may not also be authorized via IAM to perform necessary actions on your behalf.</p>"
+        },
+        {
+          "shape":"CertificateNotFoundFault",
+          "error":{
+            "code":"CertificateNotFound",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p><i>CertificateIdentifier</i> does not refer to an existing certificate. </p>"
         }
       ],
       "documentation":"<p> Modify settings for a DB instance. You can change one or more database configuration parameters by specifying these parameters and the new values in the request. </p>"
@@ -1939,7 +2075,7 @@
       },
       "input":{
         "shape":"ModifyDBParameterGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"DBParameterGroupNameMessage",
@@ -1978,12 +2114,12 @@
       },
       "input":{
         "shape":"ModifyDBSubnetGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"ModifyDBSubnetGroupResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBSubnetGroup</a></li> <li><a>ModifyDBSubnetGroup</a></li> <li><a>DescribeDBSubnetGroups</a></li> <li><a>DeleteDBSubnetGroup</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSubnetGroups</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBSubnetGroup</a> </li> <li> <a>ModifyDBSubnetGroup</a> </li> <li> <a>DescribeDBSubnetGroups</a> </li> <li> <a>DeleteDBSubnetGroup</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSubnetGroups</a> action.</p>",
         "resultWrapper":"ModifyDBSubnetGroupResult"
       },
       "errors":[
@@ -1991,7 +2127,7 @@
           "shape":"DBSubnetGroupNotFoundFault",
           "error":{
             "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -2128,12 +2264,12 @@
       },
       "input":{
         "shape":"ModifyOptionGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"ModifyOptionGroupResult",
         "wrapper":true,
-        "documentation":"<p> </p>",
+        "documentation":"<p></p>",
         "resultWrapper":"ModifyOptionGroupResult"
       },
       "errors":[
@@ -2151,7 +2287,7 @@
           "shape":"OptionGroupNotFoundFault",
           "error":{
             "code":"OptionGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -2168,12 +2304,12 @@
       },
       "input":{
         "shape":"PromoteReadReplicaMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"PromoteReadReplicaResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBInstance</a></li> <li><a>DeleteDBInstance</a></li> <li><a>ModifyDBInstance</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBInstance</a> </li> <li> <a>DeleteDBInstance</a> </li> <li> <a>ModifyDBInstance</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
         "resultWrapper":"PromoteReadReplicaResult"
       },
       "errors":[
@@ -2198,7 +2334,7 @@
           "documentation":"<p> <i>DBInstanceIdentifier</i> does not refer to an existing DB instance. </p>"
         }
       ],
-      "documentation":"<p> Promotes a read replica DB instance to a standalone DB instance. </p> <note><p>We recommend that you enable automated backups on your read replica before promoting the read replica. This ensures that no backup is taken during the promotion process. Once the instance is promoted to a primary instance, backups are taken based on your backup settings.</p></note>"
+      "documentation":"<p> Promotes a Read Replica DB instance to a standalone DB instance. </p> <note> <p>We recommend that you enable automated backups on your Read Replica before promoting the Read Replica. This ensures that no backup is taken during the promotion process. Once the instance is promoted to a primary instance, backups are taken based on your backup settings.</p> </note>"
     },
     "PurchaseReservedDBInstancesOffering":{
       "name":"PurchaseReservedDBInstancesOffering",
@@ -2208,7 +2344,7 @@
       },
       "input":{
         "shape":"PurchaseReservedDBInstancesOfferingMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"PurchaseReservedDBInstancesOfferingResult",
@@ -2258,12 +2394,12 @@
       },
       "input":{
         "shape":"RebootDBInstanceMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"RebootDBInstanceResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBInstance</a></li> <li><a>DeleteDBInstance</a></li> <li><a>ModifyDBInstance</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBInstance</a> </li> <li> <a>DeleteDBInstance</a> </li> <li> <a>ModifyDBInstance</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
         "resultWrapper":"RebootDBInstanceResult"
       },
       "errors":[
@@ -2372,7 +2508,7 @@
       },
       "input":{
         "shape":"ResetDBParameterGroupMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"DBParameterGroupNameMessage",
@@ -2411,12 +2547,12 @@
       },
       "input":{
         "shape":"RestoreDBInstanceFromDBSnapshotMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"RestoreDBInstanceFromDBSnapshotResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBInstance</a></li> <li><a>DeleteDBInstance</a></li> <li><a>ModifyDBInstance</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBInstance</a> </li> <li> <a>DeleteDBInstance</a> </li> <li> <a>ModifyDBInstance</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
         "resultWrapper":"RestoreDBInstanceFromDBSnapshotResult"
       },
       "errors":[
@@ -2504,7 +2640,7 @@
           "shape":"DBSubnetGroupNotFoundFault",
           "error":{
             "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -2544,7 +2680,7 @@
           "shape":"OptionGroupNotFoundFault",
           "error":{
             "code":"OptionGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -2569,9 +2705,19 @@
           },
           "exception":true,
           "documentation":"<p> Specified CIDRIP or EC2 security group is not authorized for the specified DB security group. </p> <p>RDS may not also be authorized via IAM to perform necessary actions on your behalf.</p>"
+        },
+        {
+          "shape":"KMSKeyNotAccessibleFault",
+          "error":{
+            "code":"KMSKeyNotAccessibleFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> Error accessing KMS key. </p>"
         }
       ],
-      "documentation":"<p> Creates a new DB instance from a DB snapshot. The target database is created from the source database restore point with the same configuration as the original source database, except that the new RDS instance is created with the default security group. </p>"
+      "documentation":"<p>Creates a new DB instance from a DB snapshot. The target database is created from the source database restore point with the same configuration as the original source database, except that the new RDS instance is created with the default security group. </p> <p>If your intent is to replace your original DB instance with the new, restored DB instance, then rename your original DB instance before you call the RestoreDBInstanceFromDBSnapshot action. RDS does not allow two DB instances with the same name. Once you have renamed your original DB instance with a different identifier, then you can pass the original name of the DB instance as the DBInstanceIdentifier in the call to the RestoreDBInstanceFromDBSnapshot action. The result is that you will replace the original DB instance with the DB instance created from the snapshot.</p>"
     },
     "RestoreDBInstanceToPointInTime":{
       "name":"RestoreDBInstanceToPointInTime",
@@ -2581,12 +2727,12 @@
       },
       "input":{
         "shape":"RestoreDBInstanceToPointInTimeMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"RestoreDBInstanceToPointInTimeResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBInstance</a></li> <li><a>DeleteDBInstance</a></li> <li><a>ModifyDBInstance</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBInstance</a> </li> <li> <a>DeleteDBInstance</a> </li> <li> <a>ModifyDBInstance</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>",
         "resultWrapper":"RestoreDBInstanceToPointInTimeResult"
       },
       "errors":[
@@ -2684,7 +2830,7 @@
           "shape":"DBSubnetGroupNotFoundFault",
           "error":{
             "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -2724,7 +2870,7 @@
           "shape":"OptionGroupNotFoundFault",
           "error":{
             "code":"OptionGroupNotFoundFault",
-            "httpStatusCode":400,
+            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true,
@@ -2749,9 +2895,19 @@
           },
           "exception":true,
           "documentation":"<p> Specified CIDRIP or EC2 security group is not authorized for the specified DB security group. </p> <p>RDS may not also be authorized via IAM to perform necessary actions on your behalf.</p>"
+        },
+        {
+          "shape":"KMSKeyNotAccessibleFault",
+          "error":{
+            "code":"KMSKeyNotAccessibleFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> Error accessing KMS key. </p>"
         }
       ],
-      "documentation":"<p> Restores a DB instance to an arbitrary point-in-time. Users can restore to any point in time before the latestRestorableTime for up to backupRetentionPeriod days. The target database is created from the source database with the same configuration as the original database except that the DB instance is created with the default DB security group. </p>"
+      "documentation":"<p> Restores a DB instance to an arbitrary point-in-time. Users can restore to any point in time before the LatestRestorableTime for up to BackupRetentionPeriod days. The target database is created from the source database with the same configuration as the original database except that the DB instance is created with the default DB security group. </p>"
     },
     "RevokeDBSecurityGroupIngress":{
       "name":"RevokeDBSecurityGroupIngress",
@@ -2761,12 +2917,12 @@
       },
       "input":{
         "shape":"RevokeDBSecurityGroupIngressMessage",
-        "documentation":"<p> </p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"RevokeDBSecurityGroupIngressResult",
         "wrapper":true,
-        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>DescribeDBSecurityGroups</a></li> <li><a>AuthorizeDBSecurityGroupIngress</a></li> <li><a>CreateDBSecurityGroup</a></li> <li><a>RevokeDBSecurityGroupIngress</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSecurityGroups</a> action.</p>",
+        "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>DescribeDBSecurityGroups</a> </li> <li> <a>AuthorizeDBSecurityGroupIngress</a> </li> <li> <a>CreateDBSecurityGroup</a> </li> <li> <a>RevokeDBSecurityGroupIngress</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSecurityGroups</a> action.</p>",
         "resultWrapper":"RevokeDBSecurityGroupIngressResult"
       },
       "errors":[
@@ -2805,6 +2961,42 @@
     }
   },
   "shapes":{
+    "AccountAttributesMessage":{
+      "type":"structure",
+      "members":{
+        "AccountQuotas":{
+          "shape":"AccountQuotaList",
+          "documentation":"<p>A list of <a>AccountQuota</a> objects. Within this list, each quota has a name, a count of usage toward the quota maximum, and a maximum value for the quota.</p>"
+        }
+      },
+      "documentation":"<p>Data returned by the <b>DescribeAccountAttributes</b> action.</p>"
+    },
+    "AccountQuota":{
+      "type":"structure",
+      "members":{
+        "AccountQuotaName":{
+          "shape":"String",
+          "documentation":"<p>The name of the Amazon RDS quota for this AWS account.</p>"
+        },
+        "Used":{
+          "shape":"Long",
+          "documentation":"<p>The amount currently used toward the quota maximum.</p>"
+        },
+        "Max":{
+          "shape":"Long",
+          "documentation":"<p>The maximum allowed value for the quota.</p>"
+        }
+      },
+      "wrapper":true,
+      "documentation":"<p>Describes a quota for an AWS account, for example, the number of DB instances allowed.</p>"
+    },
+    "AccountQuotaList":{
+      "type":"list",
+      "member":{
+        "shape":"AccountQuota",
+        "locationName":"AccountQuota"
+      }
+    },
     "AddSourceIdentifierToSubscriptionMessage":{
       "type":"structure",
       "required":[
@@ -2847,6 +3039,29 @@
         "immediate",
         "pending-reboot"
       ]
+    },
+    "ApplyPendingMaintenanceActionMessage":{
+      "type":"structure",
+      "required":[
+        "ResourceIdentifier",
+        "ApplyAction",
+        "OptInType"
+      ],
+      "members":{
+        "ResourceIdentifier":{
+          "shape":"String",
+          "documentation":"<p>The ARN of the resource that the pending maintenance action applies to.</p>"
+        },
+        "ApplyAction":{
+          "shape":"String",
+          "documentation":"<p>The pending maintenance action to apply to this resource.</p>"
+        },
+        "OptInType":{
+          "shape":"String",
+          "documentation":"<p>A value that specifies the type of opt-in request, or undoes an opt-in request. An opt-in request of type <code>immediate</code> cannot be undone.</p> <p>Valid values:</p> <ul> <li> <code>immediate</code> - Apply the maintenance action immediately.</li> <li> <code>next-maintenance</code> - Apply the maintenance action during the next maintenance window for the resource.</li> <li> <code>undo-opt-in</code> - Cancel any existing <code>next-maintenance</code> opt-in requests.</li> </ul>"
+        }
+      },
+      "documentation":"<p></p>"
     },
     "AuthorizationAlreadyExistsFault":{
       "type":"structure",
@@ -2909,7 +3124,7 @@
           "documentation":"<p> AWS Account Number of the owner of the EC2 security group specified in the EC2SecurityGroupName parameter. The AWS Access Key ID is not an acceptable value. For VPC DB security groups, <code>EC2SecurityGroupId</code> must be provided. Otherwise, EC2SecurityGroupOwnerId and either <code>EC2SecurityGroupName</code> or <code>EC2SecurityGroupId</code> must be provided. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "AvailabilityZone":{
       "type":"structure",
@@ -2920,7 +3135,7 @@
         }
       },
       "wrapper":true,
-      "documentation":"<p> Contains Availability Zone information. </p> <p> This data type is used as an element in the following data type: <ul> <li><a>OrderableDBInstanceOption</a></li> </ul> </p>"
+      "documentation":"<p> Contains Availability Zone information. </p> <p> This data type is used as an element in the following data type: <ul><li><a>OrderableDBInstanceOption</a></li></ul></p>"
     },
     "AvailabilityZoneList":{
       "type":"list",
@@ -2931,6 +3146,66 @@
     },
     "Boolean":{"type":"boolean"},
     "BooleanOptional":{"type":"boolean"},
+    "Certificate":{
+      "type":"structure",
+      "members":{
+        "CertificateIdentifier":{
+          "shape":"String",
+          "documentation":"<p>The unique key that identifies a certificate. </p>"
+        },
+        "CertificateType":{
+          "shape":"String",
+          "documentation":"<p>The type of the certificate. </p>"
+        },
+        "Thumbprint":{
+          "shape":"String",
+          "documentation":"<p>The thumbprint of the certificate. </p>"
+        },
+        "ValidFrom":{
+          "shape":"TStamp",
+          "documentation":"<p>The starting date from which the certificate is valid. </p>"
+        },
+        "ValidTill":{
+          "shape":"TStamp",
+          "documentation":"<p>The final date that the certificate continues to be valid. </p>"
+        }
+      },
+      "wrapper":true,
+      "documentation":"<p>A CA certificate for an AWS account. </p>"
+    },
+    "CertificateList":{
+      "type":"list",
+      "member":{
+        "shape":"Certificate",
+        "locationName":"Certificate"
+      }
+    },
+    "CertificateMessage":{
+      "type":"structure",
+      "members":{
+        "Certificates":{
+          "shape":"CertificateList",
+          "documentation":"<p>The list of <a>Certificate</a> objects for the AWS account.</p>"
+        },
+        "Marker":{
+          "shape":"String",
+          "documentation":"<p> An optional pagination token provided by a previous <a>DescribeCertificates</a> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>"
+        }
+      },
+      "documentation":"<p>Data returned by the <b>DescribeCertificates</b> action.</p>"
+    },
+    "CertificateNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"CertificateNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p><i>CertificateIdentifier</i> does not refer to an existing certificate. </p>"
+    },
     "CharacterSet":{
       "type":"structure",
       "members":{
@@ -2955,19 +3230,19 @@
       "members":{
         "SourceDBParameterGroupIdentifier":{
           "shape":"String",
-          "documentation":"<p> The identifier or ARN for the source DB Parameter Group. </p> <p>Constraints:</p> <ul> <li>Must specify a valid DB Parameter Group.</li> <li>If the source DB Parameter Group is in the same region as the copy, specify a valid DB Parameter Group identifier, or a valid ARN.</li> <li>If the source DB Parameter Group is in a different region than the copy, specify a valid DB parameter group ARN.</li> </ul> <p>Example: <code>my-db-param-group</code></p> <p>Example: <code>arn:aws:rds:us-west-2:123456789012:pg:special-parameters</code></p>"
+          "documentation":"<p> The identifier or ARN for the source DB parameter group. </p> <p>Constraints:</p> <ul> <li>Must specify a valid DB parameter group.</li> <li>If the source DB parameter group is in the same region as the copy, specify a valid DB parameter group identifier, for example <code>my-db-param-group</code>, or a valid ARN.</li> <li>If the source DB parameter group is in a different region than the copy, specify a valid DB parameter group ARN, for example <code>arn:aws:rds:us-west-2:123456789012:pg:special-parameters</code>.</li> </ul>"
         },
         "TargetDBParameterGroupIdentifier":{
           "shape":"String",
-          "documentation":"<p> The identifier for the copied DB Parameter Group. </p> <p>Constraints:</p> <ul> <li>Cannot be null, empty, or blank</li> <li>Must contain from 1 to 255 alphanumeric characters or hyphens</li> <li>First character must be a letter</li> <li>Cannot end with a hyphen or contain two consecutive hyphens</li> </ul> <p>Example: <code>my-db-parameter-group</code></p>"
+          "documentation":"<p>The identifier for the copied DB parameter group.</p> <p>Constraints:</p> <ul> <li>Cannot be null, empty, or blank</li> <li>Must contain from 1 to 255 alphanumeric characters or hyphens</li> <li>First character must be a letter</li> <li>Cannot end with a hyphen or contain two consecutive hyphens</li> </ul> <p>Example: <code>my-db-parameter-group</code></p>"
         },
         "TargetDBParameterGroupDescription":{
           "shape":"String",
-          "documentation":"<p> The description for the copied DB Parameter Group. </p>"
+          "documentation":"<p>A description for the copied DB parameter group.</p>"
         },
         "Tags":{"shape":"TagList"}
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "CopyDBSnapshotMessage":{
       "type":"structure",
@@ -2986,7 +3261,7 @@
         },
         "Tags":{"shape":"TagList"}
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "CopyOptionGroupMessage":{
       "type":"structure",
@@ -2998,19 +3273,19 @@
       "members":{
         "SourceOptionGroupIdentifier":{
           "shape":"String",
-          "documentation":"<p> The identifier or ARN for the source Option Group. </p> <p>Constraints:</p> <ul> <li>Must specify a valid Option Group.</li> <li>If the source Option Group is in the same region as the copy, specify a valid Option Group identifier, or a valid ARN.</li> <li>If the source Option Group is in a different region than the copy, specify a valid Option group ARN.</li> </ul> <p>Example: <code>my-option-group</code></p> <p>Example: <code>arn:aws:rds:us-west-2:123456789012:og:special-options</code></p>"
+          "documentation":"<p>The identifier or ARN for the source option group. </p> <p>Constraints:</p> <ul> <li>Must specify a valid option group.</li> <li>If the source option group is in the same region as the copy, specify a valid option group identifier, for example <code>my-option-group</code>, or a valid ARN.</li> <li>If the source option group is in a different region than the copy, specify a valid option group ARN, for example <code>arn:aws:rds:us-west-2:123456789012:og:special-options</code>.</li> </ul>"
         },
         "TargetOptionGroupIdentifier":{
           "shape":"String",
-          "documentation":"<p> The identifier for the copied Option Group. </p> <p>Constraints:</p> <ul> <li>Cannot be null, empty, or blank</li> <li>Must contain from 1 to 255 alphanumeric characters or hyphens</li> <li>First character must be a letter</li> <li>Cannot end with a hyphen or contain two consecutive hyphens</li> </ul> <p>Example: <code>my-option-group</code></p>"
+          "documentation":"<p>The identifier for the copied option group. </p> <p>Constraints:</p> <ul> <li>Cannot be null, empty, or blank</li> <li>Must contain from 1 to 255 alphanumeric characters or hyphens</li> <li>First character must be a letter</li> <li>Cannot end with a hyphen or contain two consecutive hyphens</li> </ul> <p>Example: <code>my-option-group</code></p>"
         },
         "TargetOptionGroupDescription":{
           "shape":"String",
-          "documentation":"<p> The description for the copied Option Group. </p>"
+          "documentation":"<p>The description for the copied option group. </p>"
         },
         "Tags":{"shape":"TagList"}
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "CreateDBInstanceMessage":{
       "type":"structure",
@@ -3025,7 +3300,7 @@
       "members":{
         "DBName":{
           "shape":"String",
-          "documentation":"<p>The meaning of this parameter differs according to the database engine you use.</p> <p>Type: String</p> <p><b>MySQL</b></p> <p>The name of the database to create when the DB instance is created. If this parameter is not specified, no database is created in the DB instance. </p> <p>Constraints:</p> <ul> <li>Must contain 1 to 64 alphanumeric characters</li> <li>Cannot be a word reserved by the specified database engine</li> </ul> <p><b>PostgreSQL</b></p> <p>The name of the database to create when the DB instance is created. If this parameter is not specified, no database is created in the DB instance. </p> <p>Constraints:</p> <ul> <li>Must contain 1 to 63 alphanumeric characters</li> <li>Must begin with a letter or an underscore. Subsequent characters can be letters, underscores, or digits (0-9).</li> <li>Cannot be a word reserved by the specified database engine</li> </ul> <p><b>Oracle</b></p> <p> The Oracle System ID (SID) of the created DB instance. </p> <p>Default: <code>ORCL</code></p> <p>Constraints:</p> <ul> <li>Cannot be longer than 8 characters</li> </ul> <p><b>SQL Server</b></p> <p>Not applicable. Must be null.</p>"
+          "documentation":"<p>The meaning of this parameter differs according to the database engine you use.</p> <p>Type: String</p> <p> <b>MySQL</b> </p> <p>The name of the database to create when the DB instance is created. If this parameter is not specified, no database is created in the DB instance. </p> <p>Constraints:</p> <ul> <li>Must contain 1 to 64 alphanumeric characters</li> <li>Cannot be a word reserved by the specified database engine</li> </ul> <p> <b>PostgreSQL</b> </p> <p>The name of the database to create when the DB instance is created. If this parameter is not specified, no database is created in the DB instance. </p> <p>Constraints:</p> <ul> <li>Must contain 1 to 63 alphanumeric characters</li> <li>Must begin with a letter or an underscore. Subsequent characters can be letters, underscores, or digits (0-9).</li> <li>Cannot be a word reserved by the specified database engine</li> </ul> <p> <b>Oracle</b> </p> <p> The Oracle System ID (SID) of the created DB instance. </p> <p>Default: <code>ORCL</code></p> <p>Constraints:</p> <ul> <li>Cannot be longer than 8 characters</li> </ul> <p> <b>SQL Server</b> </p> <p>Not applicable. Must be null.</p>"
         },
         "DBInstanceIdentifier":{
           "shape":"String",
@@ -3033,23 +3308,23 @@
         },
         "AllocatedStorage":{
           "shape":"IntegerOptional",
-          "documentation":"<p> The amount of storage (in gigabytes) to be initially allocated for the database instance. </p> <p> Type: Integer</p> <p><b>MySQL</b></p> <p> Constraints: Must be an integer from 5 to 3072.</p> <p><b>PostgreSQL</b></p> <p> Constraints: Must be an integer from 5 to 3072.</p> <p><b>Oracle</b></p> <p> Constraints: Must be an integer from 10 to 3072.</p> <p><b>SQL Server</b></p> <p> Constraints: Must be an integer from 200 to 1024 (Standard Edition and Enterprise Edition) or from 30 to 1024 (Express Edition and Web Edition)</p>"
+          "documentation":"<p> The amount of storage (in gigabytes) to be initially allocated for the database instance. </p> <p> Type: Integer</p> <p> <b>MySQL</b> </p> <p> Constraints: Must be an integer from 5 to 3072.</p> <p> <b>PostgreSQL</b> </p> <p> Constraints: Must be an integer from 5 to 3072.</p> <p> <b>Oracle</b> </p> <p> Constraints: Must be an integer from 10 to 3072.</p> <p> <b>SQL Server</b> </p> <p> Constraints: Must be an integer from 200 to 1024 (Standard Edition and Enterprise Edition) or from 20 to 1024 (Express Edition and Web Edition)</p>"
         },
         "DBInstanceClass":{
           "shape":"String",
-          "documentation":"<p> The compute and memory capacity of the DB instance. </p> <p> Valid Values: <code>db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge | db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium</code> </p>"
+          "documentation":"<p> The compute and memory capacity of the DB instance. </p> <p> Valid Values: <code>db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge | db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium</code></p>"
         },
         "Engine":{
           "shape":"String",
-          "documentation":"<p> The name of the database engine to be used for this instance. </p> <p> Valid Values: <code>MySQL</code> | <code>oracle-se1</code> | <code>oracle-se</code> | <code>oracle-ee</code> | <code>sqlserver-ee</code> | <code>sqlserver-se</code> | <code>sqlserver-ex</code> | <code>sqlserver-web</code> | <code>postgres</code> </p>"
+          "documentation":"<p> The name of the database engine to be used for this instance. </p> <p> Valid Values: <code>MySQL</code> | <code>oracle-se1</code> | <code>oracle-se</code> | <code>oracle-ee</code> | <code>sqlserver-ee</code> | <code>sqlserver-se</code> | <code>sqlserver-ex</code> | <code>sqlserver-web</code> | <code>postgres</code></p> <p> Not every database engine is available for every AWS region. </p>"
         },
         "MasterUsername":{
           "shape":"String",
-          "documentation":"<p> The name of master user for the client DB instance. </p> <p><b>MySQL</b></p> <p>Constraints:</p> <ul> <li>Must be 1 to 16 alphanumeric characters.</li> <li>First character must be a letter.</li> <li>Cannot be a reserved word for the chosen database engine.</li> </ul> <p>Type: String</p> <p><b>Oracle</b></p> <p>Constraints:</p> <ul> <li>Must be 1 to 30 alphanumeric characters.</li> <li>First character must be a letter.</li> <li>Cannot be a reserved word for the chosen database engine.</li> </ul> <p><b>SQL Server</b></p> <p>Constraints:</p> <ul> <li>Must be 1 to 128 alphanumeric characters.</li> <li>First character must be a letter.</li> <li>Cannot be a reserved word for the chosen database engine.</li> </ul>"
+          "documentation":"<p> The name of master user for the client DB instance. </p> <p> <b>MySQL</b> </p> <p>Constraints:</p> <ul> <li>Must be 1 to 16 alphanumeric characters.</li> <li>First character must be a letter.</li> <li>Cannot be a reserved word for the chosen database engine.</li> </ul> <p>Type: String</p> <p> <b>Oracle</b> </p> <p>Constraints:</p> <ul> <li>Must be 1 to 30 alphanumeric characters.</li> <li>First character must be a letter.</li> <li>Cannot be a reserved word for the chosen database engine.</li> </ul> <p> <b>SQL Server</b> </p> <p>Constraints:</p> <ul> <li>Must be 1 to 128 alphanumeric characters.</li> <li>First character must be a letter.</li> <li>Cannot be a reserved word for the chosen database engine.</li> </ul> <p> <b>PostgreSQL</b> </p> <p>Constraints:</p> <ul> <li>Must be 1 to 63 alphanumeric characters.</li> <li>First character must be a letter.</li> <li>Cannot be a reserved word for the chosen database engine.</li> </ul>"
         },
         "MasterUserPassword":{
           "shape":"String",
-          "documentation":"<p> The password for the master database user. Can be any printable ASCII character except \"/\", \"\"\", or \"@\". </p> <p>Type: String</p> <p><b>MySQL</b></p> <p> Constraints: Must contain from 8 to 41 characters. </p> <p><b>Oracle</b></p> <p> Constraints: Must contain from 8 to 30 characters. </p> <p><b>SQL Server</b></p> <p> Constraints: Must contain from 8 to 128 characters. </p>"
+          "documentation":"<p> The password for the master database user. Can be any printable ASCII character except \"/\", \"\"\", or \"@\". </p> <p>Type: String</p> <p> <b>MySQL</b> </p> <p> Constraints: Must contain from 8 to 41 characters. </p> <p> <b>Oracle</b> </p> <p> Constraints: Must contain from 8 to 30 characters. </p> <p> <b>SQL Server</b> </p> <p> Constraints: Must contain from 8 to 128 characters. </p> <p> <b>PostgreSQL</b> </p> <p> Constraints: Must contain from 8 to 128 characters. </p>"
         },
         "DBSecurityGroups":{
           "shape":"DBSecurityGroupNameList",
@@ -3061,7 +3336,7 @@
         },
         "AvailabilityZone":{
           "shape":"String",
-          "documentation":"<p> The EC2 Availability Zone that the database instance will be created in. </p> <p> Default: A random, system-chosen Availability Zone in the endpoint's region. </p> <p> Example: <code>us-east-1d</code> </p> <p> Constraint: The AvailabilityZone parameter cannot be specified if the MultiAZ parameter is set to <code>true</code>. The specified Availability Zone must be in the same region as the current endpoint. </p>"
+          "documentation":"<p> The EC2 Availability Zone that the database instance will be created in. For information on regions and Availability Zones, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html\">Regions and Availability Zones</a>. </p> <p> Default: A random, system-chosen Availability Zone in the endpoint's region. </p> <p> Example: <code>us-east-1d</code></p> <p> Constraint: The AvailabilityZone parameter cannot be specified if the MultiAZ parameter is set to <code>true</code>. The specified Availability Zone must be in the same region as the current endpoint. </p>"
         },
         "DBSubnetGroupName":{
           "shape":"String",
@@ -3069,7 +3344,7 @@
         },
         "PreferredMaintenanceWindow":{
           "shape":"String",
-          "documentation":"<p> The weekly time range (in UTC) during which system maintenance can occur. </p> <p> Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> </p> <p> Default: A 30-minute window selected at random from an 8-hour block of time per region, occurring on a random day of the week. To see the time blocks available, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html\"> Adjusting the Preferred Maintenance Window</a> in the Amazon RDS User Guide. </p> <p>Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun</p> <p>Constraints: Minimum 30-minute window.</p>"
+          "documentation":"<p> The weekly time range (in UTC) during which system maintenance can occur. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBMaintenance.html\">DB Instance Maintenance</a>. </p> <p> Format: <code>ddd:hh24:mi-ddd:hh24:mi</code></p> <p> Default: A 30-minute window selected at random from an 8-hour block of time per region, occurring on a random day of the week. To see the time blocks available, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html\"> Adjusting the Preferred Maintenance Window</a> in the Amazon RDS User Guide. </p> <p>Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun</p> <p>Constraints: Minimum 30-minute window.</p>"
         },
         "DBParameterGroupName":{
           "shape":"String",
@@ -3077,15 +3352,15 @@
         },
         "BackupRetentionPeriod":{
           "shape":"IntegerOptional",
-          "documentation":"<p> The number of days for which automated backups are retained. Setting this parameter to a positive number enables backups. Setting this parameter to 0 disables automated backups. </p> <p> Default: 1 </p> <p>Constraints:</p> <ul> <li>Must be a value from 0 to 35</li> <li>Cannot be set to 0 if the DB instance is a source to read replicas</li> </ul>"
+          "documentation":"<p> The number of days for which automated backups are retained. Setting this parameter to a positive number enables backups. Setting this parameter to 0 disables automated backups. </p> <p> Default: 1 </p> <p>Constraints:</p> <ul> <li>Must be a value from 0 to 35</li> <li>Cannot be set to 0 if the DB instance is a source to Read Replicas</li> </ul>"
         },
         "PreferredBackupWindow":{
           "shape":"String",
-          "documentation":"<p> The daily time range during which automated backups are created if automated backups are enabled, using the <code>BackupRetentionPeriod</code> parameter. </p> <p> Default: A 30-minute window selected at random from an 8-hour block of time per region. See the Amazon RDS User Guide for the time blocks for each region from which the default backup windows are assigned. </p> <p> Constraints: Must be in the format <code>hh24:mi-hh24:mi</code>. Times should be Universal Time Coordinated (UTC). Must not conflict with the preferred maintenance window. Must be at least 30 minutes. </p>"
+          "documentation":"<p> The daily time range during which automated backups are created if automated backups are enabled, using the <code>BackupRetentionPeriod</code> parameter. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.BackingUpAndRestoringAmazonRDSInstances.html\">DB Instance Backups</a>. </p> <p> Default: A 30-minute window selected at random from an 8-hour block of time per region. See the Amazon RDS User Guide for the time blocks for each region from which the default backup windows are assigned. </p> <p> Constraints: Must be in the format <code>hh24:mi-hh24:mi</code>. Times should be Universal Time Coordinated (UTC). Must not conflict with the preferred maintenance window. Must be at least 30 minutes. </p>"
         },
         "Port":{
           "shape":"IntegerOptional",
-          "documentation":"<p> The port number on which the database accepts connections. </p> <p><b>MySQL</b></p> <p> Default: <code>3306</code> </p> <p> Valid Values: <code>1150-65535</code> </p> <p>Type: Integer </p> <p><b>PostgreSQL</b></p> <p> Default: <code>5432</code> </p> <p> Valid Values: <code>1150-65535</code> </p> <p>Type: Integer </p> <p><b>Oracle</b></p> <p> Default: <code>1521</code> </p> <p> Valid Values: <code>1150-65535</code> </p> <p><b>SQL Server</b></p> <p> Default: <code>1433</code> </p> <p> Valid Values: <code>1150-65535</code> except for <code>1434</code>, <code>3389</code>, <code>47001</code>, <code>49152</code>, and <code>49152</code> through <code>49156</code>. </p>"
+          "documentation":"<p> The port number on which the database accepts connections. </p> <p> <b>MySQL</b> </p> <p> Default: <code>3306</code></p> <p> Valid Values: <code>1150-65535</code></p> <p>Type: Integer </p> <p> <b>PostgreSQL</b> </p> <p> Default: <code>5432</code></p> <p> Valid Values: <code>1150-65535</code></p> <p>Type: Integer </p> <p> <b>Oracle</b> </p> <p> Default: <code>1521</code></p> <p> Valid Values: <code>1150-65535</code></p> <p> <b>SQL Server</b> </p> <p> Default: <code>1433</code></p> <p> Valid Values: <code>1150-65535</code> except for <code>1434</code>, <code>3389</code>, <code>47001</code>, <code>49152</code>, and <code>49152</code> through <code>49156</code>. </p>"
         },
         "MultiAZ":{
           "shape":"BooleanOptional",
@@ -3093,7 +3368,7 @@
         },
         "EngineVersion":{
           "shape":"String",
-          "documentation":"<p> The version number of the database engine to use. </p> <p><b>MySQL</b></p> <p>Example: <code>5.1.42</code></p> <p>Type: String</p> <p><b>PostgreSQL</b></p> <p>Example: <code>9.3</code></p> <p>Type: String</p> <p><b>Oracle</b></p> <p>Example: <code>11.2.0.2.v2</code></p> <p>Type: String</p> <p><b>SQL Server</b></p> <p>Example: <code>10.50.2789.0.v1</code></p>"
+          "documentation":"<p> The version number of the database engine to use. </p> <p> The following are the database engines and major and minor versions that are available with Amazon RDS. Not every database engine is available for every AWS region. </p> <p> <b>MySQL</b> </p> <ul> <li> <b>Version 5.1 (Only available in the following regions: ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):</b> <code> 5.1.73a | 5.1.73b</code> </li> <li> <b>Version 5.5 (Only available in the following regions: ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):</b> <code> 5.5.40 | 5.5.40a</code> </li> <li> <b>Version 5.5 (Available in all regions):</b> <code> 5.5.40b | 5.5.41</code> </li> <li> <b>Version 5.6 (Available in all regions):</b> <code> 5.6.19a | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22</code> </li> </ul> <p> <b>MySQL</b> </p> <ul> <li> <b>Version 5.1 (Only available in the following regions: ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):</b> <code> 5.1.73a | 5.1.73b</code> </li> <li> <b>Version 5.5 (Only available in the following regions: ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):</b> <code> 5.5.40 | 5.5.40a</code> </li> <li> <b>Version 5.5 (Available in all regions):</b> <code> 5.5.40b | 5.5.41</code> </li> <li> <b>Version 5.6 (Available in all regions):</b> <code> 5.6.19a | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22</code> </li> </ul> <p> <b>MySQL</b> </p> <ul> <li> <b>Version 5.1 (Only available in the following regions: ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):</b> <code> 5.1.73a | 5.1.73b</code> </li> <li> <b>Version 5.5 (Only available in the following regions: ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):</b> <code> 5.5.40 | 5.5.40a</code> </li> <li> <b>Version 5.5 (Available in all regions):</b> <code> 5.5.40b | 5.5.41</code> </li> <li> <b>Version 5.6 (Available in all regions):</b> <code> 5.6.19a | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22</code> </li> </ul> <p> <b>MySQL</b> </p> <ul> <li> <b>Version 5.1 (Only available in the following regions: ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):</b> <code> 5.1.73a | 5.1.73b</code> </li> <li> <b>Version 5.5 (Only available in the following regions: ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):</b> <code> 5.5.40 | 5.5.40a</code> </li> <li> <b>Version 5.5 (Available in all regions):</b> <code> 5.5.40b | 5.5.41</code> </li> <li> <b>Version 5.6 (Available in all regions):</b> <code> 5.6.19a | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22</code> </li> </ul> <p> <b>Oracle Database Enterprise Edition (oracle-ee)</b> </p> <ul> <li> <b>Version 11.2 (Only available in the following regions: ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):</b> <code> 11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7</code> </li> <li> <b>Version 11.2 (Available in all regions):</b> <code> 11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3</code> </li> </ul> <p> <b>Oracle Database Enterprise Edition (oracle-ee)</b> </p> <ul> <li> <b>Version 11.2 (Only available in the following regions: ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):</b> <code> 11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7</code> </li> <li> <b>Version 11.2 (Available in all regions):</b> <code> 11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3</code> </li> </ul> <p> <b>Oracle Database Standard Edition (oracle-se)</b> </p> <ul> <li> <b>Version 11.2 (Only available in the following regions: us-west-1):</b> <code> 11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7</code> </li> <li> <b>Version 11.2 (Only available in the following regions: eu-central-1, us-west-1):</b> <code> 11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3</code> </li> </ul> <p> <b>Oracle Database Standard Edition (oracle-se)</b> </p> <ul> <li> <b>Version 11.2 (Only available in the following regions: us-west-1):</b> <code> 11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7</code> </li> <li> <b>Version 11.2 (Only available in the following regions: eu-central-1, us-west-1):</b> <code> 11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3</code> </li> </ul> <p> <b>Oracle Database Standard Edition One (oracle-se1)</b> </p> <ul> <li> <b>Version 11.2 (Only available in the following regions: us-west-1):</b> <code> 11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7</code> </li> <li> <b>Version 11.2 (Only available in the following regions: eu-central-1, us-west-1):</b> <code> 11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3</code> </li> </ul> <p> <b>Oracle Database Standard Edition One (oracle-se1)</b> </p> <ul> <li> <b>Version 11.2 (Only available in the following regions: us-west-1):</b> <code> 11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7</code> </li> <li> <b>Version 11.2 (Only available in the following regions: eu-central-1, us-west-1):</b> <code> 11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3</code> </li> </ul> <p> <b>PostgreSQL</b> </p> <ul> <li> <b>Version 9.3 (Only available in the following regions: ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):</b> <code> 9.3.1 | 9.3.2</code> </li> <li> <b>Version 9.3 (Available in all regions):</b> <code> 9.3.3 | 9.3.5</code> </li> </ul> <p> <b>PostgreSQL</b> </p> <ul> <li> <b>Version 9.3 (Only available in the following regions: ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):</b> <code> 9.3.1 | 9.3.2</code> </li> <li> <b>Version 9.3 (Available in all regions):</b> <code> 9.3.3 | 9.3.5</code> </li> </ul> <p> <b>Microsoft SQL Server Enterprise Edition (sqlserver-ee)</b> </p> <ul> <li> <b>Version 10.50 (Only available in the following regions: eu-central-1, us-west-1):</b> <code> 10.50.2789.0.v1</code> </li> <li> <b>Version 11.00 (Only available in the following regions: eu-central-1, us-west-1):</b> <code> 11.00.2100.60.v1</code> </li> </ul> <p> <b>Microsoft SQL Server Enterprise Edition (sqlserver-ee)</b> </p> <ul> <li> <b>Version 10.50 (Only available in the following regions: eu-central-1, us-west-1):</b> <code> 10.50.2789.0.v1</code> </li> <li> <b>Version 11.00 (Only available in the following regions: eu-central-1, us-west-1):</b> <code> 11.00.2100.60.v1</code> </li> </ul> <p> <b>Microsoft SQL Server Express Edition (sqlserver-ex)</b> </p> <ul> <li> <b>Version 10.50 (Available in all regions):</b> <code> 10.50.2789.0.v1</code> </li> <li> <b>Version 11.00 (Available in all regions):</b> <code> 11.00.2100.60.v1</code> </li> </ul> <p> <b>Microsoft SQL Server Express Edition (sqlserver-ex)</b> </p> <ul> <li> <b>Version 10.50 (Available in all regions):</b> <code> 10.50.2789.0.v1</code> </li> <li> <b>Version 11.00 (Available in all regions):</b> <code> 11.00.2100.60.v1</code> </li> </ul> <p> <b>Microsoft SQL Server Standard Edition (sqlserver-se)</b> </p> <ul> <li> <b>Version 10.50 (Available in all regions):</b> <code> 10.50.2789.0.v1</code> </li> <li> <b>Version 11.00 (Available in all regions):</b> <code> 11.00.2100.60.v1</code> </li> </ul> <p> <b>Microsoft SQL Server Standard Edition (sqlserver-se)</b> </p> <ul> <li> <b>Version 10.50 (Available in all regions):</b> <code> 10.50.2789.0.v1</code> </li> <li> <b>Version 11.00 (Available in all regions):</b> <code> 11.00.2100.60.v1</code> </li> </ul> <p> <b>Microsoft SQL Server Web Edition (sqlserver-web)</b> </p> <ul> <li> <b>Version 10.50 (Available in all regions):</b> <code> 10.50.2789.0.v1</code> </li> <li> <b>Version 11.00 (Available in all regions):</b> <code> 11.00.2100.60.v1</code> </li> </ul> <p> <b>Microsoft SQL Server Web Edition (sqlserver-web)</b> </p> <ul> <li> <b>Version 10.50 (Available in all regions):</b> <code> 10.50.2789.0.v1</code> </li> <li> <b>Version 11.00 (Available in all regions):</b> <code> 11.00.2100.60.v1</code> </li> </ul>"
         },
         "AutoMinorVersionUpgrade":{
           "shape":"BooleanOptional",
@@ -3101,7 +3376,7 @@
         },
         "LicenseModel":{
           "shape":"String",
-          "documentation":"<p> License model information for this DB instance. </p> <p> Valid values: <code>license-included</code> | <code>bring-your-own-license</code> | <code>general-public-license</code> </p>"
+          "documentation":"<p> License model information for this DB instance. </p> <p> Valid values: <code>license-included</code> | <code>bring-your-own-license</code> | <code>general-public-license</code></p>"
         },
         "Iops":{
           "shape":"IntegerOptional",
@@ -3117,12 +3392,12 @@
         },
         "PubliclyAccessible":{
           "shape":"BooleanOptional",
-          "documentation":"<p> Specifies the accessibility options for the DB instance. A value of true specifies an Internet-facing instance with a publicly resolvable DNS name, which resolves to a public IP address. A value of false specifies an internal instance with a DNS name that resolves to a private IP address. </p> <p> Default: The default behavior varies depending on whether a VPC has been requested or not. The following list shows the default behavior in each case. </p> <ul> <li> <b>Default VPC:</b>true</li> <li> <b>VPC:</b>false</li> </ul> <p> If no DB subnet group has been specified as part of the request and the PubliclyAccessible value has not been set, the DB instance will be publicly accessible. If a specific DB subnet group has been specified as part of the request and the PubliclyAccessible value has not been set, the DB instance will be private. </p>"
+          "documentation":"<p> Specifies the accessibility options for the DB instance. A value of true specifies an Internet-facing instance with a publicly resolvable DNS name, which resolves to a public IP address. A value of false specifies an internal instance with a DNS name that resolves to a private IP address. </p> <p> Default: The default behavior varies depending on whether a VPC has been requested or not. The following list shows the default behavior in each case. </p> <ul> <li> <b>Default VPC:</b> true</li> <li> <b>VPC:</b> false</li> </ul> <p> If no DB subnet group has been specified as part of the request and the PubliclyAccessible value has not been set, the DB instance will be publicly accessible. If a specific DB subnet group has been specified as part of the request and the PubliclyAccessible value has not been set, the DB instance will be private. </p>"
         },
         "Tags":{"shape":"TagList"},
         "StorageType":{
           "shape":"String",
-          "documentation":"<p> Specifies storage type to be associated with the DB Instance. </p> <p> Valid values: <code>standard | gp2 | io1</code> </p> <p> If you specify <code>io1</code>, you must also include a value for the <code>Iops</code> parameter. </p>"
+          "documentation":"<p> Specifies the storage type to be associated with the DB instance. </p> <p> Valid values: <code>standard | gp2 | io1</code></p> <p> If you specify <code>io1</code>, you must also include a value for the <code>Iops</code> parameter. </p> <p> Default: <code>io1</code> if the <code>Iops</code> parameter is specified; otherwise <code>standard</code></p>"
         },
         "TdeCredentialArn":{
           "shape":"String",
@@ -3131,9 +3406,17 @@
         "TdeCredentialPassword":{
           "shape":"String",
           "documentation":"<p> The password for the given ARN from the Key Store in order to access the device. </p>"
+        },
+        "StorageEncrypted":{
+          "shape":"BooleanOptional",
+          "documentation":"<p> Specifies whether the DB instance is encrypted. </p> <p> Default: false </p>"
+        },
+        "KmsKeyId":{
+          "shape":"String",
+          "documentation":"<p> The KMS key identifier for an encrypted DB instance. </p> <p>The KMS key identifier is the Amazon Resoure Name (ARN) for the KMS encryption key. If you are creating a DB instance with the same AWS account that owns the KMS encryption key used to encrypt the new DB instance, then you can use the KMS key alias instead of the ARN for the KM encryption key.</p> <p>If the <code>StorageEncrypted</code> parameter is true, and you do not specify a value for the <code>KmsKeyId</code> parameter, then Amazon RDS will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS region.</p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "CreateDBInstanceReadReplicaMessage":{
       "type":"structure",
@@ -3144,19 +3427,19 @@
       "members":{
         "DBInstanceIdentifier":{
           "shape":"String",
-          "documentation":"<p> The DB instance identifier of the read replica. This is the unique key that identifies a DB instance. This parameter is stored as a lowercase string. </p>"
+          "documentation":"<p> The DB instance identifier of the Read Replica. This is the unique key that identifies a DB instance. This parameter is stored as a lowercase string. </p>"
         },
         "SourceDBInstanceIdentifier":{
           "shape":"String",
-          "documentation":"<p> The identifier of the DB instance that will act as the source for the read replica. Each DB instance can have up to five read replicas. </p> <p>Constraints:</p> <ul> <li>Must be the identifier of an existing DB instance.</li> <li>Can specify a DB instance that is a read replica only if the source is running MySQL 5.6.</li> <li>The specified DB instance must have automatic backups enabled, its backup retention period must be greater than 0.</li> <li>If the source DB instance is in the same region as the read replica, specify a valid DB instance identifier.</li> <li>If the source DB instance is in a different region than the read replica, specify a valid DB instance ARN. For more information, go to <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN\"> Constructing a Amazon RDS Amazon Resource Name (ARN)</a>.</li> </ul>"
+          "documentation":"<p> The identifier of the DB instance that will act as the source for the Read Replica. Each DB instance can have up to five Read Replicas. </p> <p>Constraints:</p> <ul> <li>Must be the identifier of an existing DB instance.</li> <li>Can specify a DB instance that is a MySQL Read Replica only if the source is running MySQL 5.6.</li> <li>Can specify a DB instance that is a PostgreSQL Read Replica only if the source is running PostgreSQL 9.3.5.</li> <li>The specified DB instance must have automatic backups enabled, its backup retention period must be greater than 0.</li> <li>If the source DB instance is in the same region as the Read Replica, specify a valid DB instance identifier.</li> <li>If the source DB instance is in a different region than the Read Replica, specify a valid DB instance ARN. For more information, go to <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN\"> Constructing a Amazon RDS Amazon Resource Name (ARN)</a>.</li> </ul>"
         },
         "DBInstanceClass":{
           "shape":"String",
-          "documentation":"<p> The compute and memory capacity of the read replica. </p> <p> Valid Values: <code>db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge | db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium</code> </p> <p>Default: Inherits from the source DB instance.</p>"
+          "documentation":"<p> The compute and memory capacity of the Read Replica. </p> <p> Valid Values: <code>db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge | db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium</code></p> <p>Default: Inherits from the source DB instance.</p>"
         },
         "AvailabilityZone":{
           "shape":"String",
-          "documentation":"<p> The Amazon EC2 Availability Zone that the read replica will be created in. </p> <p> Default: A random, system-chosen Availability Zone in the endpoint's region. </p> <p> Example: <code>us-east-1d</code> </p>"
+          "documentation":"<p> The Amazon EC2 Availability Zone that the Read Replica will be created in. </p> <p> Default: A random, system-chosen Availability Zone in the endpoint's region. </p> <p> Example: <code>us-east-1d</code></p>"
         },
         "Port":{
           "shape":"IntegerOptional",
@@ -3164,7 +3447,7 @@
         },
         "AutoMinorVersionUpgrade":{
           "shape":"BooleanOptional",
-          "documentation":"<p> Indicates that minor engine upgrades will be applied automatically to the read replica during the maintenance window. </p> <p>Default: Inherits from the source DB instance</p>"
+          "documentation":"<p> Indicates that minor engine upgrades will be applied automatically to the Read Replica during the maintenance window. </p> <p>Default: Inherits from the source DB instance</p>"
         },
         "Iops":{
           "shape":"IntegerOptional",
@@ -3181,11 +3464,11 @@
         "Tags":{"shape":"TagList"},
         "DBSubnetGroupName":{
           "shape":"String",
-          "documentation":"<p> Specifies a DB subnet group for the DB instance. The new DB instance will be created in the VPC associated with the DB subnet group. If no DB subnet group is specified, then the new DB instance is not created in a VPC. </p> <p>Constraints:</p> <ul> <li>Can only be specified if the source DB instance identifier specifies a DB instance in another region.</li> <li>The specified DB subnet group must be in the same region in which the operation is running.</li> <li> All read replicas in one region that are created from the same source DB instance must either: <ul> <li>Specify DB subnet groups from the same VPC. All these read replicas will be created in the same VPC.</li> <li>Not specify a DB subnet group. All these read replicas will be created outside of any VPC.</li> </ul> </li> </ul>"
+          "documentation":"<p> Specifies a DB subnet group for the DB instance. The new DB instance will be created in the VPC associated with the DB subnet group. If no DB subnet group is specified, then the new DB instance is not created in a VPC. </p> <p>Constraints:</p> <ul> <li>Can only be specified if the source DB instance identifier specifies a DB instance in another region.</li> <li>The specified DB subnet group must be in the same region in which the operation is running.</li> <li> All Read Replicas in one region that are created from the same source DB instance must either: <ul> <li>Specify DB subnet groups from the same VPC. All these Read Replicas will be created in the same VPC.</li> <li>Not specify a DB subnet group. All these Read Replicas will be created outside of any VPC.</li> </ul> </li> </ul>"
         },
         "StorageType":{
           "shape":"String",
-          "documentation":"<p> Specifies storage type to be associated with the DB Instance read replica. </p> <p> Valid values: <code>standard | gp2 | io1</code> </p> <p> If you specify <code>io1</code>, you must also include a value for the <code>Iops</code> parameter. </p>"
+          "documentation":"<p> Specifies the storage type to be associated with the Read Replica. </p> <p> Valid values: <code>standard | gp2 | io1</code></p> <p> If you specify <code>io1</code>, you must also include a value for the <code>Iops</code> parameter. </p> <p> Default: <code>io1</code> if the <code>Iops</code> parameter is specified; otherwise <code>standard</code></p>"
         }
       }
     },
@@ -3211,7 +3494,7 @@
         },
         "Tags":{"shape":"TagList"}
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "CreateDBSecurityGroupMessage":{
       "type":"structure",
@@ -3230,7 +3513,7 @@
         },
         "Tags":{"shape":"TagList"}
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "CreateDBSnapshotMessage":{
       "type":"structure",
@@ -3249,7 +3532,7 @@
         },
         "Tags":{"shape":"TagList"}
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "CreateDBSubnetGroupMessage":{
       "type":"structure",
@@ -3273,7 +3556,7 @@
         },
         "Tags":{"shape":"TagList"}
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "CreateEventSubscriptionMessage":{
       "type":"structure",
@@ -3419,7 +3702,7 @@
         },
         "DBName":{
           "shape":"String",
-          "documentation":"<p>The meaning of this parameter differs according to the database engine you use. For example, this value returns only MySQL information when returning values from CreateDBInstanceReadReplica since read replicas are only supported for MySQL.</p> <p><b>MySQL</b></p> <p> Contains the name of the initial database of this instance that was provided at create time, if one was specified when the DB instance was created. This same name is returned for the life of the DB instance. </p> <p>Type: String</p> <p><b>Oracle</b></p> <p> Contains the Oracle System ID (SID) of the created DB instance. Not shown when the returned parameters do not apply to an Oracle DB instance. </p>"
+          "documentation":"<p>The meaning of this parameter differs according to the database engine you use. For example, this value returns either MySQL or PostgreSQL information when returning values from CreateDBInstanceReadReplica since Read Replicas are only supported for MySQL and PostgreSQL.</p> <p> <b>MySQL, SQL Server, PostgreSQL</b> </p> <p> Contains the name of the initial database of this instance that was provided at create time, if one was specified when the DB instance was created. This same name is returned for the life of the DB instance. </p> <p>Type: String</p> <p> <b>Oracle</b> </p> <p> Contains the Oracle System ID (SID) of the created DB instance. Not shown when the returned parameters do not apply to an Oracle DB instance. </p>"
         },
         "Endpoint":{
           "shape":"Endpoint",
@@ -3487,11 +3770,11 @@
         },
         "ReadReplicaSourceDBInstanceIdentifier":{
           "shape":"String",
-          "documentation":"<p> Contains the identifier of the source DB instance if this DB instance is a read replica. </p>"
+          "documentation":"<p> Contains the identifier of the source DB instance if this DB instance is a Read Replica. </p>"
         },
         "ReadReplicaDBInstanceIdentifiers":{
           "shape":"ReadReplicaDBInstanceIdentifierList",
-          "documentation":"<p> Contains one or more identifiers of the read replicas associated with this DB instance. </p>"
+          "documentation":"<p> Contains one or more identifiers of the Read Replicas associated with this DB instance. </p>"
         },
         "LicenseModel":{
           "shape":"String",
@@ -3519,19 +3802,35 @@
         },
         "StatusInfos":{
           "shape":"DBInstanceStatusInfoList",
-          "documentation":"<p> The status of a read replica. If the instance is not a read replica, this will be blank. </p>"
+          "documentation":"<p> The status of a Read Replica. If the instance is not a Read Replica, this will be blank. </p>"
         },
         "StorageType":{
           "shape":"String",
-          "documentation":"<p> Specifies storage type associated with DB Instance. </p>"
+          "documentation":"<p> Specifies the storage type associated with DB instance. </p>"
         },
         "TdeCredentialArn":{
           "shape":"String",
           "documentation":"<p> The ARN from the Key Store with which the instance is associated for TDE encryption. </p>"
+        },
+        "StorageEncrypted":{
+          "shape":"Boolean",
+          "documentation":"<p> Specifies whether the DB instance is encrypted. </p>"
+        },
+        "KmsKeyId":{
+          "shape":"String",
+          "documentation":"<p> If <code>StorageEncrypted</code> is true, the KMS key identifier for the encrypted DB instance. </p>"
+        },
+        "DbiResourceId":{
+          "shape":"String",
+          "documentation":"<p> If <code>StorageEncrypted</code> is true, the region-unique, immutable identifier for the encrypted DB instance. This identifier is found in AWS CloudTrail log entries whenever the KMS key for the DB instance is accessed. </p>"
+        },
+        "CACertificateIdentifier":{
+          "shape":"String",
+          "documentation":"<p>The identifier of the CA certificate for this DB instance.</p>"
         }
       },
       "wrapper":true,
-      "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBInstance</a></li> <li><a>DeleteDBInstance</a></li> <li><a>ModifyDBInstance</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>"
+      "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBInstance</a> </li> <li> <a>DeleteDBInstance</a> </li> <li> <a>ModifyDBInstance</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBInstances</a> action.</p>"
     },
     "DBInstanceAlreadyExistsFault":{
       "type":"structure",
@@ -3612,19 +3911,19 @@
       "members":{
         "DBParameterGroupName":{
           "shape":"String",
-          "documentation":"<p> Provides the name of the DB parameter group. </p>"
+          "documentation":"<p>Provides the name of the DB parameter group. </p>"
         },
         "DBParameterGroupFamily":{
           "shape":"String",
-          "documentation":"<p> Provides the name of the DB parameter group family that this DB parameter group is compatible with. </p>"
+          "documentation":"<p>Provides the name of the DB parameter group family that this DB parameter group is compatible with. </p>"
         },
         "Description":{
           "shape":"String",
-          "documentation":"<p> Provides the customer-specified description for this DB parameter group. </p>"
+          "documentation":"<p>Provides the customer-specified description for this DB parameter group. </p>"
         }
       },
       "wrapper":true,
-      "documentation":"<p> Contains the result of a successful invocation of the <a>CreateDBParameterGroup</a> action. </p> <p> This data type is used as a request parameter in the <a>DeleteDBParameterGroup</a> action, and as a response element in the <a>DescribeDBParameterGroups</a> action. </p>"
+      "documentation":"<p>Contains the result of a successful invocation of the <a>CreateDBParameterGroup</a> action. </p> <p>This data type is used as a request parameter in the <a>DeleteDBParameterGroup</a> action, and as a response element in the <a>DescribeDBParameterGroups</a> action. </p>"
     },
     "DBParameterGroupAlreadyExistsFault":{
       "type":"structure",
@@ -3705,7 +4004,7 @@
           "documentation":"<p> The status of parameter updates. </p>"
         }
       },
-      "documentation":"<p> The status of the DB parameter group. </p> <p>This data type is used as a response element in the following actions:</p> <ul> <li><a>CreateDBInstance</a></li> <li><a>CreateDBInstanceReadReplica</a></li> <li><a>DeleteDBInstance</a></li> <li><a>ModifyDBInstance</a></li> <li><a>RebootDBInstance</a></li> <li><a>RestoreDBInstanceFromDBSnapshot</a></li> </ul>"
+      "documentation":"<p> The status of the DB parameter group. </p> <p>This data type is used as a response element in the following actions:</p> <ul> <li> <a>CreateDBInstance</a> </li> <li> <a>CreateDBInstanceReadReplica</a> </li> <li> <a>DeleteDBInstance</a> </li> <li> <a>ModifyDBInstance</a> </li> <li> <a>RebootDBInstance</a> </li> <li> <a>RestoreDBInstanceFromDBSnapshot</a> </li> </ul>"
     },
     "DBParameterGroupStatusList":{
       "type":"list",
@@ -3757,7 +4056,7 @@
         }
       },
       "wrapper":true,
-      "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>DescribeDBSecurityGroups</a></li> <li><a>AuthorizeDBSecurityGroupIngress</a></li> <li><a>CreateDBSecurityGroup</a></li> <li><a>RevokeDBSecurityGroupIngress</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSecurityGroups</a> action.</p>"
+      "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>DescribeDBSecurityGroups</a> </li> <li> <a>AuthorizeDBSecurityGroupIngress</a> </li> <li> <a>CreateDBSecurityGroup</a> </li> <li> <a>RevokeDBSecurityGroupIngress</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSecurityGroups</a> action.</p>"
     },
     "DBSecurityGroupAlreadyExistsFault":{
       "type":"structure",
@@ -3783,7 +4082,7 @@
           "documentation":"<p> The status of the DB security group. </p>"
         }
       },
-      "documentation":"<p> This data type is used as a response element in the following actions: </p> <ul> <li><a>ModifyDBInstance</a></li> <li><a>RebootDBInstance</a></li> <li><a>RestoreDBInstanceFromDBSnapshot</a></li> <li><a>RestoreDBInstanceToPointInTime</a></li> </ul>"
+      "documentation":"<p> This data type is used as a response element in the following actions: </p> <ul> <li> <a>ModifyDBInstance</a> </li> <li> <a>RebootDBInstance</a> </li> <li> <a>RestoreDBInstanceFromDBSnapshot</a> </li> <li> <a>RestoreDBInstanceToPointInTime</a> </li> </ul>"
     },
     "DBSecurityGroupMembershipList":{
       "type":"list",
@@ -3933,15 +4232,23 @@
         },
         "StorageType":{
           "shape":"String",
-          "documentation":"<p> Specifies storage type associated with DB Snapshot. </p>"
+          "documentation":"<p> Specifies the storage type associated with DB Snapshot. </p>"
         },
         "TdeCredentialArn":{
           "shape":"String",
           "documentation":"<p> The ARN from the Key Store with which to associate the instance for TDE encryption. </p>"
+        },
+        "Encrypted":{
+          "shape":"Boolean",
+          "documentation":"<p> Specifies whether the DB snapshot is encrypted. </p>"
+        },
+        "KmsKeyId":{
+          "shape":"String",
+          "documentation":"<p> If <code>Encrypted</code> is true, the KMS key identifier for the encrypted DB snapshot. </p>"
         }
       },
       "wrapper":true,
-      "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBSnapshot</a></li> <li><a>DeleteDBSnapshot</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSnapshots</a> action.</p>"
+      "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBSnapshot</a> </li> <li> <a>DeleteDBSnapshot</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSnapshots</a> action.</p>"
     },
     "DBSnapshotAlreadyExistsFault":{
       "type":"structure",
@@ -4013,7 +4320,7 @@
         }
       },
       "wrapper":true,
-      "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li><a>CreateDBSubnetGroup</a></li> <li><a>ModifyDBSubnetGroup</a></li> <li><a>DescribeDBSubnetGroups</a></li> <li><a>DeleteDBSubnetGroup</a></li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSubnetGroups</a> action.</p>"
+      "documentation":"<p> Contains the result of a successful invocation of the following actions: </p> <ul> <li> <a>CreateDBSubnetGroup</a> </li> <li> <a>ModifyDBSubnetGroup</a> </li> <li> <a>DescribeDBSubnetGroups</a> </li> <li> <a>DeleteDBSubnetGroup</a> </li> </ul> <p>This data type is used as a response element in the <a>DescribeDBSubnetGroups</a> action.</p>"
     },
     "DBSubnetGroupAlreadyExistsFault":{
       "type":"structure",
@@ -4071,7 +4378,7 @@
       },
       "error":{
         "code":"DBSubnetGroupNotFoundFault",
-        "httpStatusCode":400,
+        "httpStatusCode":404,
         "senderFault":true
       },
       "exception":true,
@@ -4130,14 +4437,14 @@
         },
         "SkipFinalSnapshot":{
           "shape":"Boolean",
-          "documentation":"<p> Determines whether a final DB snapshot is created before the DB instance is deleted. If <code>true</code> is specified, no DBSnapshot is created. If <code>false</code> is specified, a DB snapshot is created before the DB instance is deleted. </p> <p>Specify <code>true</code> when deleting a read replica.</p> <note>The FinalDBSnapshotIdentifier parameter must be specified if SkipFinalSnapshot is <code>false</code>.</note> <p>Default: <code>false</code></p>"
+          "documentation":"<p> Determines whether a final DB snapshot is created before the DB instance is deleted. If <code>true</code> is specified, no DBSnapshot is created. If <code>false</code> is specified, a DB snapshot is created before the DB instance is deleted. </p> <p>Specify <code>true</code> when deleting a Read Replica.</p> <note>The FinalDBSnapshotIdentifier parameter must be specified if SkipFinalSnapshot is <code>false</code>.</note> <p>Default: <code>false</code></p>"
         },
         "FinalDBSnapshotIdentifier":{
           "shape":"String",
-          "documentation":"<p> The DBSnapshotIdentifier of the new DBSnapshot created when SkipFinalSnapshot is set to <code>false</code>. </p> <note> Specifying this parameter and also setting the SkipFinalShapshot parameter to true results in an error. </note> <p>Constraints:</p> <ul> <li>Must be 1 to 255 alphanumeric characters</li> <li>First character must be a letter</li> <li>Cannot end with a hyphen or contain two consecutive hyphens</li> <li>Cannot be specified when deleting a read replica.</li> </ul>"
+          "documentation":"<p> The DBSnapshotIdentifier of the new DBSnapshot created when SkipFinalSnapshot is set to <code>false</code>. </p> <note> Specifying this parameter and also setting the SkipFinalShapshot parameter to true results in an error. </note> <p>Constraints:</p> <ul> <li>Must be 1 to 255 alphanumeric characters</li> <li>First character must be a letter</li> <li>Cannot end with a hyphen or contain two consecutive hyphens</li> <li>Cannot be specified when deleting a Read Replica.</li> </ul>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DeleteDBParameterGroupMessage":{
       "type":"structure",
@@ -4148,7 +4455,7 @@
           "documentation":"<p> The name of the DB parameter group. </p> <p>Constraints:</p> <ul> <li>Must be the name of an existing DB parameter group</li> <li>You cannot delete a default DB parameter group</li> <li>Cannot be associated with any DB instances</li> </ul>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DeleteDBSecurityGroupMessage":{
       "type":"structure",
@@ -4159,7 +4466,7 @@
           "documentation":"<p> The name of the DB security group to delete. </p> <note>You cannot delete the default DB security group.</note> <p> Constraints: </p> <ul> <li>Must be 1 to 255 alphanumeric characters</li> <li>First character must be a letter</li> <li>Cannot end with a hyphen or contain two consecutive hyphens</li> <li>Must not be \"Default\"</li> <li>May not contain spaces</li> </ul>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DeleteDBSnapshotMessage":{
       "type":"structure",
@@ -4170,7 +4477,7 @@
           "documentation":"<p> The DBSnapshot identifier. </p> <p>Constraints: Must be the name of an existing DB snapshot in the <code>available</code> state.</p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DeleteDBSubnetGroupMessage":{
       "type":"structure",
@@ -4181,7 +4488,7 @@
           "documentation":"<p> The name of the database subnet group to delete. </p> <note>You cannot delete the default subnet group.</note> <p> Constraints: </p> <ul> <li>Must be 1 to 255 alphanumeric characters</li> <li>First character must be a letter</li> <li>Cannot end with a hyphen or contain two consecutive hyphens</li> </ul>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DeleteEventSubscriptionMessage":{
       "type":"structure",
@@ -4203,7 +4510,35 @@
           "documentation":"<p> The name of the option group to be deleted. </p> <note>You cannot delete default option groups.</note>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
+    },
+    "DescribeAccountAttributesMessage":{
+      "type":"structure",
+      "members":{
+      },
+      "documentation":"<p></p>"
+    },
+    "DescribeCertificatesMessage":{
+      "type":"structure",
+      "members":{
+        "CertificateIdentifier":{
+          "shape":"String",
+          "documentation":"<p> The user-supplied certificate identifier. If this parameter is specified, information for only the identified certificate is returned. This parameter isn't case-sensitive. </p> <p>Constraints:</p> <ul> <li>Must contain from 1 to 63 alphanumeric characters or hyphens</li> <li>First character must be a letter</li> <li>Cannot end with a hyphen or contain two consecutive hyphens</li> </ul>"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "documentation":"<p>This parameter is not currently supported.</p>"
+        },
+        "MaxRecords":{
+          "shape":"IntegerOptional",
+          "documentation":"<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100</p>"
+        },
+        "Marker":{
+          "shape":"String",
+          "documentation":"<p> An optional pagination token provided by a previous <a>DescribeCertificates</a> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>"
+        }
+      },
+      "documentation":"<p></p>"
     },
     "DescribeDBEngineVersionsMessage":{
       "type":"structure",
@@ -4262,7 +4597,7 @@
           "documentation":"<p> An optional pagination token provided by a previous DescribeDBInstances request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DescribeDBLogFilesDetails":{
       "type":"structure",
@@ -4322,7 +4657,7 @@
           "documentation":"<p> The pagination token provided in the previous request. If this parameter is specified the response includes only records beyond the marker, up to MaxRecords. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DescribeDBLogFilesResponse":{
       "type":"structure",
@@ -4358,7 +4693,7 @@
           "documentation":"<p> An optional pagination token provided by a previous <code>DescribeDBParameterGroups</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DescribeDBParametersMessage":{
       "type":"structure",
@@ -4406,7 +4741,7 @@
           "documentation":"<p> An optional pagination token provided by a previous DescribeDBSecurityGroups request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DescribeDBSnapshotsMessage":{
       "type":"structure",
@@ -4436,7 +4771,7 @@
           "documentation":"<p> An optional pagination token provided by a previous <code>DescribeDBSnapshots</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DescribeDBSubnetGroupsMessage":{
       "type":"structure",
@@ -4458,7 +4793,7 @@
           "documentation":"<p> An optional pagination token provided by a previous DescribeDBSubnetGroups request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DescribeEngineDefaultParametersMessage":{
       "type":"structure",
@@ -4481,7 +4816,7 @@
           "documentation":"<p> An optional pagination token provided by a previous <code>DescribeEngineDefaultParameters</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DescribeEventCategoriesMessage":{
       "type":"structure",
@@ -4532,11 +4867,11 @@
         },
         "StartTime":{
           "shape":"TStamp",
-          "documentation":"<p> The beginning of the time interval to retrieve events for, specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a> </p> <p>Example: 2009-07-08T18:00Z</p>"
+          "documentation":"<p> The beginning of the time interval to retrieve events for, specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a></p> <p>Example: 2009-07-08T18:00Z</p>"
         },
         "EndTime":{
           "shape":"TStamp",
-          "documentation":"<p> The end of the time interval for which to retrieve events, specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a> </p> <p>Example: 2009-07-08T18:00Z</p>"
+          "documentation":"<p> The end of the time interval for which to retrieve events, specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a></p> <p>Example: 2009-07-08T18:00Z</p>"
         },
         "Duration":{
           "shape":"IntegerOptional",
@@ -4559,7 +4894,7 @@
           "documentation":"<p> An optional pagination token provided by a previous DescribeEvents request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DescribeOptionGroupOptionsMessage":{
       "type":"structure",
@@ -4586,7 +4921,7 @@
           "documentation":"<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DescribeOptionGroupsMessage":{
       "type":"structure",
@@ -4616,7 +4951,7 @@
           "documentation":"<p> Filters the list of option groups to only include groups associated with a specific database engine version. If specified, then EngineName must also be specified. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DescribeOrderableDBInstanceOptionsMessage":{
       "type":"structure",
@@ -4655,7 +4990,29 @@
           "documentation":"<p> An optional pagination token provided by a previous DescribeOrderableDBInstanceOptions request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
+    },
+    "DescribePendingMaintenanceActionsMessage":{
+      "type":"structure",
+      "members":{
+        "ResourceIdentifier":{
+          "shape":"String",
+          "documentation":"<p>The ARN of a resource to return pending maintenance actions for.</p>"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "documentation":"<p>A filter that specifies one or more resources to return pending maintenance actions for.</p> <p>Supported filters:</p> <ul> <li> <code>db-instance-id</code> - Accepts DB instance identifiers and DB instance Amazon Resource Names (ARNs). The results list will only include pending maintenance actions for the DB instances identified by these ARNs.</li> </ul>"
+        },
+        "Marker":{
+          "shape":"String",
+          "documentation":"<p> An optional pagination token provided by a previous <code>DescribePendingMaintenanceActions</code> request. If this parameter is specified, the response includes only records beyond the marker, up to a number of records specified by <code>MaxRecords</code>. </p>"
+        },
+        "MaxRecords":{
+          "shape":"IntegerOptional",
+          "documentation":"<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: minimum 20, maximum 100</p>"
+        }
+      },
+      "documentation":"<p></p>"
     },
     "DescribeReservedDBInstancesMessage":{
       "type":"structure",
@@ -4701,7 +5058,7 @@
           "documentation":"<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "DescribeReservedDBInstancesOfferingsMessage":{
       "type":"structure",
@@ -4743,7 +5100,7 @@
           "documentation":"<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "Double":{"type":"double"},
     "DownloadDBLogFilePortionDetails":{
@@ -4785,10 +5142,10 @@
         },
         "NumberOfLines":{
           "shape":"Integer",
-          "documentation":"<p> The number of lines to download. </p> <p>If the NumberOfLines parameter is specified, then the block of lines returned can be from the beginning or the end of the log file, depending on the value of the Marker parameter. <ul> <li><p>If neither Marker or NumberOfLines are specified, the entire log file is returned.</p></li> <li><p>If NumberOfLines is specified and Marker is not specified, then the most recent lines from the end of the log file are returned.</p></li> <li><p>If Marker is specified as \"0\", then the specified number of lines from the beginning of the log file are returned.</p></li> <li><p>You can download the log file in blocks of lines by specifying the size of the block using the NumberOfLines parameter, and by specifying a value of \"0\" for the Marker parameter in your first request. Include the Marker value returned in the response as the Marker value for the next request, continuing until the AdditionalDataPending response element returns false.</p></li> </ul> </p>"
+          "documentation":"<p> The number of lines to download. </p> <p>If the NumberOfLines parameter is specified, then the block of lines returned can be from the beginning or the end of the log file, depending on the value of the Marker parameter. <ul> <li><p>If neither Marker or NumberOfLines are specified, the entire log file is returned.</p></li> <li><p>If NumberOfLines is specified and Marker is not specified, then the most recent lines from the end of the log file are returned.</p></li> <li><p>If Marker is specified as \"0\", then the specified number of lines from the beginning of the log file are returned.</p></li> <li><p>You can download the log file in blocks of lines by specifying the size of the block using the NumberOfLines parameter, and by specifying a value of \"0\" for the Marker parameter in your first request. Include the Marker value returned in the response as the Marker value for the next request, continuing until the AdditionalDataPending response element returns false.</p></li> </ul></p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "EC2SecurityGroup":{
       "type":"structure",
@@ -4810,7 +5167,7 @@
           "documentation":"<p> Specifies the AWS ID of the owner of the EC2 security group specified in the <code>EC2SecurityGroupName</code> field. </p>"
         }
       },
-      "documentation":"<p> This data type is used as a response element in the following actions: </p> <ul> <li><a>AuthorizeDBSecurityGroupIngress</a></li> <li><a>DescribeDBSecurityGroups</a></li> <li><a>RevokeDBSecurityGroupIngress</a></li> </ul>"
+      "documentation":"<p> This data type is used as a response element in the following actions: </p> <ul> <li> <a>AuthorizeDBSecurityGroupIngress</a> </li> <li> <a>DescribeDBSecurityGroups</a> </li> <li> <a>RevokeDBSecurityGroupIngress</a> </li> </ul>"
     },
     "EC2SecurityGroupList":{
       "type":"list",
@@ -4831,7 +5188,7 @@
           "documentation":"<p> Specifies the port that the database engine is listening on. </p>"
         }
       },
-      "documentation":"<p> This data type is used as a response element in the following actions: </p> <ul> <li><a>CreateDBInstance</a></li> <li><a>DescribeDBInstances</a></li> <li><a>DeleteDBInstance</a></li> </ul>"
+      "documentation":"<p> This data type is used as a response element in the following actions: </p> <ul> <li> <a>CreateDBInstance</a> </li> <li> <a>DescribeDBInstances</a> </li> <li> <a>DeleteDBInstance</a> </li> </ul>"
     },
     "EngineDefaults":{
       "type":"structure",
@@ -5236,6 +5593,18 @@
       "exception":true,
       "documentation":"<p> DB subnet group does not cover all Availability Zones after it is created because users' change. </p>"
     },
+    "KMSKeyNotAccessibleFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"KMSKeyNotAccessibleFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p> Error accessing KMS key. </p>"
+    },
     "KeyList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -5266,7 +5635,7 @@
         },
         "AllocatedStorage":{
           "shape":"IntegerOptional",
-          "documentation":"<p> The new storage capacity of the RDS instance. Changing this setting does not result in an outage and the change is applied during the next maintenance window unless <code>ApplyImmediately</code> is set to <code>true</code> for this request. </p> <p><b>MySQL</b></p> <p>Default: Uses existing setting</p> <p>Valid Values: 5-3072</p> <p>Constraints: Value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value.</p> <p>Type: Integer</p> <p><b>PostgreSQL</b></p> <p>Default: Uses existing setting</p> <p>Valid Values: 5-3072</p> <p>Constraints: Value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value.</p> <p>Type: Integer</p> <p><b>Oracle</b></p> <p>Default: Uses existing setting</p> <p>Valid Values: 10-3072</p> <p>Constraints: Value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value.</p> <p><b>SQL Server</b></p> <p>Cannot be modified.</p> <p> If you choose to migrate your DB instance from using standard storage to using Provisioned IOPS, or from using Provisioned IOPS to using standard storage, the process can take time. The duration of the migration depends on several factors such as database load, storage size, storage type (standard or Provisioned IOPS), amount of IOPS provisioned (if any), and the number of prior scale storage operations. Typical migration times are under 24 hours, but the process can take up to several days in some cases. During the migration, the DB instance will be available for use, but may experience performance degradation. While the migration takes place, nightly backups for the instance will be suspended. No other Amazon RDS operations can take place for the instance, including modifying the instance, rebooting the instance, deleting the instance, creating a read replica for the instance, and creating a DB snapshot of the instance. </p>"
+          "documentation":"<p> The new storage capacity of the RDS instance. Changing this setting does not result in an outage and the change is applied during the next maintenance window unless <code>ApplyImmediately</code> is set to <code>true</code> for this request. </p> <p> <b>MySQL</b> </p> <p>Default: Uses existing setting</p> <p>Valid Values: 5-3072</p> <p>Constraints: Value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value.</p> <p>Type: Integer</p> <p> <b>PostgreSQL</b> </p> <p>Default: Uses existing setting</p> <p>Valid Values: 5-3072</p> <p>Constraints: Value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value.</p> <p>Type: Integer</p> <p> <b>Oracle</b> </p> <p>Default: Uses existing setting</p> <p>Valid Values: 10-3072</p> <p>Constraints: Value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value.</p> <p> <b>SQL Server</b> </p> <p>Cannot be modified.</p> <p> If you choose to migrate your DB instance from using standard storage to using Provisioned IOPS, or from using Provisioned IOPS to using standard storage, the process can take time. The duration of the migration depends on several factors such as database load, storage size, storage type (standard or Provisioned IOPS), amount of IOPS provisioned (if any), and the number of prior scale storage operations. Typical migration times are under 24 hours, but the process can take up to several days in some cases. During the migration, the DB instance will be available for use, but may experience performance degradation. While the migration takes place, nightly backups for the instance will be suspended. No other Amazon RDS operations can take place for the instance, including modifying the instance, rebooting the instance, deleting the instance, creating a Read Replica for the instance, and creating a DB snapshot of the instance. </p>"
         },
         "DBInstanceClass":{
           "shape":"String",
@@ -5286,7 +5655,7 @@
         },
         "MasterUserPassword":{
           "shape":"String",
-          "documentation":"<p> The new password for the DB instance master user. Can be any printable ASCII character except \"/\", \"\"\", or \"@\".</p> <p> Changing this parameter does not result in an outage and the change is asynchronously applied as soon as possible. Between the time of the request and the completion of the request, the <code>MasterUserPassword</code> element exists in the <code>PendingModifiedValues</code> element of the operation response. </p> <p>Default: Uses existing setting</p> <p>Constraints: Must be 8 to 41 alphanumeric characters (MySQL), 8 to 30 alphanumeric characters (Oracle), or 8 to 128 alphanumeric characters (SQL Server).</p> <note> Amazon RDS API actions never return the password, so this action provides a way to regain access to a master instance user if the password is lost. </note>"
+          "documentation":"<p> The new password for the DB instance master user. Can be any printable ASCII character except \"/\", \"\"\", or \"@\".</p> <p> Changing this parameter does not result in an outage and the change is asynchronously applied as soon as possible. Between the time of the request and the completion of the request, the <code>MasterUserPassword</code> element exists in the <code>PendingModifiedValues</code> element of the operation response. </p> <p>Default: Uses existing setting</p> <p>Constraints: Must be 8 to 41 alphanumeric characters (MySQL), 8 to 30 alphanumeric characters (Oracle), or 8 to 128 alphanumeric characters (SQL Server).</p> <note> Amazon RDS API actions never return the password, so this action provides a way to regain access to a primary instance user if the password is lost. This includes restoring privileges that may have been accidentally revoked. </note>"
         },
         "DBParameterGroupName":{
           "shape":"String",
@@ -5294,7 +5663,7 @@
         },
         "BackupRetentionPeriod":{
           "shape":"IntegerOptional",
-          "documentation":"<p> The number of days to retain automated backups. Setting this parameter to a positive number enables backups. Setting this parameter to 0 disables automated backups. </p> <p>Changing this parameter can result in an outage if you change from 0 to a non-zero value or from a non-zero value to 0. These changes are applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to <code>true</code> for this request. If you change the parameter from one non-zero value to another non-zero value, the change is asynchronously applied as soon as possible.</p> <p>Default: Uses existing setting</p> <p>Constraints:</p> <ul> <li>Must be a value from 0 to 35</li> <li>Can be specified for a read replica only if the source is running MySQL 5.6</li> <li>Cannot be set to 0 if the DB instance is a source to read replicas</li> </ul>"
+          "documentation":"<p> The number of days to retain automated backups. Setting this parameter to a positive number enables backups. Setting this parameter to 0 disables automated backups. </p> <p>Changing this parameter can result in an outage if you change from 0 to a non-zero value or from a non-zero value to 0. These changes are applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to <code>true</code> for this request. If you change the parameter from one non-zero value to another non-zero value, the change is asynchronously applied as soon as possible.</p> <p>Default: Uses existing setting</p> <p>Constraints:</p> <ul> <li>Must be a value from 0 to 35</li> <li>Can be specified for a MySQL Read Replica only if the source is running MySQL 5.6</li> <li>Can be specified for a PostgreSQL Read Replica only if the source is running PostgreSQL 9.3.5</li> <li>Cannot be set to 0 if the DB instance is a source to Read Replicas</li> </ul>"
         },
         "PreferredBackupWindow":{
           "shape":"String",
@@ -5306,11 +5675,11 @@
         },
         "MultiAZ":{
           "shape":"BooleanOptional",
-          "documentation":"<p> Specifies if the DB instance is a Multi-AZ deployment. Changing this parameter does not result in an outage and the change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to <code>true</code> for this request. </p> <p>Constraints: Cannot be specified if the DB instance is a read replica.</p>"
+          "documentation":"<p> Specifies if the DB instance is a Multi-AZ deployment. Changing this parameter does not result in an outage and the change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to <code>true</code> for this request. </p> <p>Constraints: Cannot be specified if the DB instance is a Read Replica.</p>"
         },
         "EngineVersion":{
           "shape":"String",
-          "documentation":"<p> The version number of the database engine to upgrade to. Changing this parameter results in an outage and the change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to <code>true</code> for this request. </p> <p> For major version upgrades, if a non-default DB parameter group is currently in use, a new DB parameter group in the DB parameter group family for the new engine version must be specified. The new DB parameter group can be the default for that DB parameter group family. </p> <p>Example: <code>5.1.42</code></p>"
+          "documentation":"<p> The version number of the database engine to upgrade to. Changing this parameter results in an outage and the change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to <code>true</code> for this request. </p> <p> For major version upgrades, if a non-default DB parameter group is currently in use, a new DB parameter group in the DB parameter group family for the new engine version must be specified. The new DB parameter group can be the default for that DB parameter group family. </p> <p>For a list of valid engine versions, see <a>CreateDBInstance</a>.</p>"
         },
         "AllowMajorVersionUpgrade":{
           "shape":"Boolean",
@@ -5322,7 +5691,7 @@
         },
         "Iops":{
           "shape":"IntegerOptional",
-          "documentation":"<p> The new Provisioned IOPS (I/O operations per second) value for the RDS instance. Changing this setting does not result in an outage and the change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to <code>true</code> for this request. </p> <p>Default: Uses existing setting</p> <p>Constraints: Value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value. If you are migrating from Provisioned IOPS to standard storage, set this value to 0. The DB instance will require a reboot for the change in storage type to take effect.</p> <p><b>SQL Server</b></p> <p>Setting the IOPS value for the SQL Server database engine is not supported.</p> <p>Type: Integer</p> <p> If you choose to migrate your DB instance from using standard storage to using Provisioned IOPS, or from using Provisioned IOPS to using standard storage, the process can take time. The duration of the migration depends on several factors such as database load, storage size, storage type (standard or Provisioned IOPS), amount of IOPS provisioned (if any), and the number of prior scale storage operations. Typical migration times are under 24 hours, but the process can take up to several days in some cases. During the migration, the DB instance will be available for use, but may experience performance degradation. While the migration takes place, nightly backups for the instance will be suspended. No other Amazon RDS operations can take place for the instance, including modifying the instance, rebooting the instance, deleting the instance, creating a read replica for the instance, and creating a DB snapshot of the instance. </p>"
+          "documentation":"<p> The new Provisioned IOPS (I/O operations per second) value for the RDS instance. Changing this setting does not result in an outage and the change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to <code>true</code> for this request. </p> <p>Default: Uses existing setting</p> <p>Constraints: Value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value. If you are migrating from Provisioned IOPS to standard storage, set this value to 0. The DB instance will require a reboot for the change in storage type to take effect.</p> <p> <b>SQL Server</b> </p> <p>Setting the IOPS value for the SQL Server database engine is not supported.</p> <p>Type: Integer</p> <p> If you choose to migrate your DB instance from using standard storage to using Provisioned IOPS, or from using Provisioned IOPS to using standard storage, the process can take time. The duration of the migration depends on several factors such as database load, storage size, storage type (standard or Provisioned IOPS), amount of IOPS provisioned (if any), and the number of prior scale storage operations. Typical migration times are under 24 hours, but the process can take up to several days in some cases. During the migration, the DB instance will be available for use, but may experience performance degradation. While the migration takes place, nightly backups for the instance will be suspended. No other Amazon RDS operations can take place for the instance, including modifying the instance, rebooting the instance, deleting the instance, creating a Read Replica for the instance, and creating a DB snapshot of the instance. </p>"
         },
         "OptionGroupName":{
           "shape":"String",
@@ -5334,7 +5703,7 @@
         },
         "StorageType":{
           "shape":"String",
-          "documentation":"<p> Specifies storage type to be associated with the DB Instance. </p> <p> Valid values: <code>standard | gp2 | io1</code> </p> <p> If you specify <code>io1</code>, you must also include a value for the <code>Iops</code> parameter. </p>"
+          "documentation":"<p> Specifies the storage type to be associated with the DB instance. </p> <p> Valid values: <code>standard | gp2 | io1</code></p> <p> If you specify <code>io1</code>, you must also include a value for the <code>Iops</code> parameter. </p> <p> Default: <code>io1</code> if the <code>Iops</code> parameter is specified; otherwise <code>standard</code></p>"
         },
         "TdeCredentialArn":{
           "shape":"String",
@@ -5343,9 +5712,13 @@
         "TdeCredentialPassword":{
           "shape":"String",
           "documentation":"<p> The password for the given ARN from the Key Store in order to access the device. </p>"
+        },
+        "CACertificateIdentifier":{
+          "shape":"String",
+          "documentation":"<p> Indicates the certificate which needs to be associated with the instance. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "ModifyDBParameterGroupMessage":{
       "type":"structure",
@@ -5363,7 +5736,7 @@
           "documentation":"<p> An array of parameter names, values, and the apply method for the parameter update. At least one parameter name, value, and apply method must be supplied; subsequent arguments are optional. A maximum of 20 parameters may be modified in a single request. </p> <p>Valid Values (for the application method): <code>immediate | pending-reboot</code></p> <note>You can use the immediate value with dynamic parameters only. You can use the pending-reboot value for both dynamic and static parameters, and changes are applied when you reboot the DB instance without failover. </note>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "ModifyDBSubnetGroupMessage":{
       "type":"structure",
@@ -5385,7 +5758,7 @@
           "documentation":"<p> The EC2 subnet IDs for the DB subnet group. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "ModifyEventSubscriptionMessage":{
       "type":"structure",
@@ -5435,7 +5808,7 @@
           "documentation":"<p> Indicates whether the changes should be applied immediately, or during the next maintenance window for each instance associated with the option group. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "Option":{
       "type":"structure",
@@ -5518,7 +5891,7 @@
         },
         "OptionGroupDescription":{
           "shape":"String",
-          "documentation":"<p> Provides the description of the option group. </p>"
+          "documentation":"<p>Provides a description of the option group. </p>"
         },
         "EngineName":{
           "shape":"String",
@@ -5534,15 +5907,15 @@
         },
         "AllowsVpcAndNonVpcInstanceMemberships":{
           "shape":"Boolean",
-          "documentation":"<p> Indicates whether this option group can be applied to both VPC and non-VPC instances. The value 'true' indicates the option group can be applied to both VPC and non-VPC instances. </p>"
+          "documentation":"<p>Indicates whether this option group can be applied to both VPC and non-VPC instances. The value <code>true</code> indicates the option group can be applied to both VPC and non-VPC instances. </p>"
         },
         "VpcId":{
           "shape":"String",
-          "documentation":"<p> If AllowsVpcAndNonVpcInstanceMemberships is 'false', this field is blank. If AllowsVpcAndNonVpcInstanceMemberships is 'true' and this field is blank, then this option group can be applied to both VPC and non-VPC instances. If this field contains a value, then this option group can only be applied to instances that are in the VPC indicated by this field. </p>"
+          "documentation":"<p>If <b>AllowsVpcAndNonVpcInstanceMemberships</b> is <code>false</code>, this field is blank. If <b>AllowsVpcAndNonVpcInstanceMemberships</b> is <code>true</code> and this field is blank, then this option group can be applied to both VPC and non-VPC instances. If this field contains a value, then this option group can only be applied to instances that are in the VPC indicated by this field. </p>"
         }
       },
       "wrapper":true,
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "OptionGroupAlreadyExistsFault":{
       "type":"structure",
@@ -5583,7 +5956,7 @@
       },
       "error":{
         "code":"OptionGroupNotFoundFault",
-        "httpStatusCode":400,
+        "httpStatusCode":404,
         "senderFault":true
       },
       "exception":true,
@@ -5602,7 +5975,7 @@
         },
         "EngineName":{
           "shape":"String",
-          "documentation":"<p> Engine name that this option can be applied to. </p>"
+          "documentation":"<p>The name of the engine that this option can be applied to. </p>"
         },
         "MajorEngineVersion":{
           "shape":"String",
@@ -5667,7 +6040,7 @@
           "documentation":"<p> Boolean value where true indicates that this option group option can be changed from the default value. </p>"
         }
       },
-      "documentation":"<p> option group option settings are used to display settings available for each option with their default values and other information. These values are used with the DescribeOptionGroupOptions action. </p>"
+      "documentation":"<p>Option group option settings are used to display settings available for each option with their default values and other information. These values are used with the DescribeOptionGroupOptions action. </p>"
     },
     "OptionGroupOptionSettingsList":{
       "type":"list",
@@ -5693,7 +6066,7 @@
           "documentation":"<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "OptionGroupQuotaExceededFault":{
       "type":"structure",
@@ -5831,11 +6204,15 @@
         },
         "ReadReplicaCapable":{
           "shape":"Boolean",
-          "documentation":"<p> Indicates whether this orderable DB instance can have a read replica. </p>"
+          "documentation":"<p> Indicates whether this orderable DB instance can have a Read Replica. </p>"
         },
         "Vpc":{
           "shape":"Boolean",
           "documentation":"<p> Indicates whether this is a VPC orderable DB instance. </p>"
+        },
+        "SupportsStorageEncryption":{
+          "shape":"Boolean",
+          "documentation":"<p> Indicates whether this orderable DB instance supports encrypted storage. </p>"
         },
         "StorageType":{
           "shape":"String",
@@ -5923,6 +6300,64 @@
         "locationName":"Parameter"
       }
     },
+    "PendingMaintenanceAction":{
+      "type":"structure",
+      "members":{
+        "Action":{
+          "shape":"String",
+          "documentation":"<p>The type of pending maintenance action that is available for the resource.</p>"
+        },
+        "AutoAppliedAfterDate":{
+          "shape":"TStamp",
+          "documentation":"<p>The date of the maintenance window when the action will be applied. The maintenance action will be applied to the resource during its first maintenance window after this date. If this date is specified, any <code>next-maintenance</code> opt-in requests are ignored.</p>"
+        },
+        "ForcedApplyDate":{
+          "shape":"TStamp",
+          "documentation":"<p>The date when the maintenance action will be automatically applied. The maintenance action will be applied to the resource on this date regardless of the maintenance window for the resource. If this date is specified, any <code>immediate</code> opt-in requests are ignored.</p>"
+        },
+        "OptInStatus":{
+          "shape":"String",
+          "documentation":"<p>Indicates the type of opt-in request that has been received for the resource.</p>"
+        },
+        "CurrentApplyDate":{
+          "shape":"TStamp",
+          "documentation":"<p>The effective date when the pending maintenance action will be applied to the resource. This date takes into account opt-in requests received from the <a>ApplyPendingMaintenanceAction</a> API, the <code>AutoAppliedAfterDate</code>, and the <code>ForcedApplyDate</code>. This value is blank if an opt-in request has not been received and nothing has been specified as <code>AutoAppliedAfterDate</code> or <code>ForcedApplyDate</code>.</p>"
+        },
+        "Description":{
+          "shape":"String",
+          "documentation":"<p>A description providing more detail about the maintenance action.</p>"
+        }
+      },
+      "documentation":"<p>Provides information about a pending maintenance action for a resource.</p>"
+    },
+    "PendingMaintenanceActionDetails":{
+      "type":"list",
+      "member":{
+        "shape":"PendingMaintenanceAction",
+        "locationName":"PendingMaintenanceAction"
+      }
+    },
+    "PendingMaintenanceActions":{
+      "type":"list",
+      "member":{
+        "shape":"ResourcePendingMaintenanceActions",
+        "locationName":"ResourcePendingMaintenanceActions"
+      }
+    },
+    "PendingMaintenanceActionsMessage":{
+      "type":"structure",
+      "members":{
+        "PendingMaintenanceActions":{
+          "shape":"PendingMaintenanceActions",
+          "documentation":"<p>A list of the pending maintenance actions for the resource.</p>"
+        },
+        "Marker":{
+          "shape":"String",
+          "documentation":"<p> An optional pagination token provided by a previous <code>DescribePendingMaintenanceActions</code> request. If this parameter is specified, the response includes only records beyond the marker, up to a number of records specified by <code>MaxRecords</code>. </p>"
+        }
+      },
+      "documentation":"<p>Data returned from the <b>DescribePendingMaintenanceActions</b> action.</p>"
+    },
     "PendingModifiedValues":{
       "type":"structure",
       "members":{
@@ -5964,7 +6399,11 @@
         },
         "StorageType":{
           "shape":"String",
-          "documentation":"<p> Specifies storage type to be associated with the DB instance. </p>"
+          "documentation":"<p> Specifies the storage type to be associated with the DB instance. </p>"
+        },
+        "CACertificateIdentifier":{
+          "shape":"String",
+          "documentation":"<p>Specifies the identifier of the CA certificate for the DB instance.</p>"
         }
       },
       "documentation":"<p> This data type is used as a response element in the <a>ModifyDBInstance</a> action. </p>"
@@ -5987,7 +6426,7 @@
       "members":{
         "DBInstanceIdentifier":{
           "shape":"String",
-          "documentation":"<p> The DB instance identifier. This value is stored as a lowercase string. </p> <p>Constraints:</p> <ul> <li>Must be the identifier for an existing read replica DB instance</li> <li>Must contain from 1 to 63 alphanumeric characters or hyphens</li> <li>First character must be a letter</li> <li>Cannot end with a hyphen or contain two consecutive hyphens</li> </ul> <p>Example: <copy>mydbinstance</copy></p>"
+          "documentation":"<p> The DB instance identifier. This value is stored as a lowercase string. </p> <p>Constraints:</p> <ul> <li>Must be the identifier for an existing Read Replica DB instance</li> <li>Must contain from 1 to 63 alphanumeric characters or hyphens</li> <li>First character must be a letter</li> <li>Cannot end with a hyphen or contain two consecutive hyphens</li> </ul> <p>Example: <copy>mydbinstance</copy></p>"
         },
         "BackupRetentionPeriod":{
           "shape":"IntegerOptional",
@@ -5998,7 +6437,7 @@
           "documentation":"<p> The daily time range during which automated backups are created if automated backups are enabled, using the <code>BackupRetentionPeriod</code> parameter. </p> <p> Default: A 30-minute window selected at random from an 8-hour block of time per region. See the Amazon RDS User Guide for the time blocks for each region from which the default backup windows are assigned. </p> <p> Constraints: Must be in the format <code>hh24:mi-hh24:mi</code>. Times should be Universal Time Coordinated (UTC). Must not conflict with the preferred maintenance window. Must be at least 30 minutes. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "ProvisionedIopsNotAvailableInAZFault":{
       "type":"structure",
@@ -6030,7 +6469,7 @@
         },
         "Tags":{"shape":"TagList"}
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "ReadReplicaDBInstanceIdentifierList":{
       "type":"list",
@@ -6052,7 +6491,7 @@
           "documentation":"<p> When <code>true</code>, the reboot will be conducted through a MultiAZ failover. </p> <p>Constraint: You cannot specify <code>true</code> if the instance is not configured for MultiAZ.</p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "RecurringCharge":{
       "type":"structure",
@@ -6326,10 +6765,37 @@
         },
         "Parameters":{
           "shape":"ParametersList",
-          "documentation":"<p> An array of parameter names, values, and the apply method for the parameter update. At least one parameter name, value, and apply method must be supplied; subsequent arguments are optional. A maximum of 20 parameters may be modified in a single request. </p> <p><b>MySQL</b></p> <p>Valid Values (for Apply method): <code>immediate</code> | <code>pending-reboot</code></p> <p>You can use the immediate value with dynamic parameters only. You can use the <code>pending-reboot</code> value for both dynamic and static parameters, and changes are applied when DB instance reboots.</p> <p><b>Oracle</b></p> <p>Valid Values (for Apply method): <code>pending-reboot</code></p>"
+          "documentation":"<p> An array of parameter names, values, and the apply method for the parameter update. At least one parameter name, value, and apply method must be supplied; subsequent arguments are optional. A maximum of 20 parameters may be modified in a single request. </p> <p> <b>MySQL</b> </p> <p>Valid Values (for Apply method): <code>immediate</code> | <code>pending-reboot</code></p> <p>You can use the immediate value with dynamic parameters only. You can use the <code>pending-reboot</code> value for both dynamic and static parameters, and changes are applied when DB instance reboots.</p> <p> <b>Oracle</b> </p> <p>Valid Values (for Apply method): <code>pending-reboot</code></p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
+    },
+    "ResourceNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ResourceNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The specified resource ID was not found. </p>"
+    },
+    "ResourcePendingMaintenanceActions":{
+      "type":"structure",
+      "members":{
+        "ResourceIdentifier":{
+          "shape":"String",
+          "documentation":"<p>The ARN of the resource that has pending maintenance actions.</p>"
+        },
+        "PendingMaintenanceActionDetails":{
+          "shape":"PendingMaintenanceActionDetails",
+          "documentation":"<p>A list that provides details about the pending maintenance actions for the resource.</p>"
+        }
+      },
+      "wrapper":true,
+      "documentation":"<p>Describes the pending maintenance actions for a resource.</p>"
     },
     "RestoreDBInstanceFromDBSnapshotMessage":{
       "type":"structure",
@@ -6368,7 +6834,7 @@
         },
         "PubliclyAccessible":{
           "shape":"BooleanOptional",
-          "documentation":"<p> Specifies the accessibility options for the DB instance. A value of true specifies an Internet-facing instance with a publicly resolvable DNS name, which resolves to a public IP address. A value of false specifies an internal instance with a DNS name that resolves to a private IP address. </p> <p> Default: The default behavior varies depending on whether a VPC has been requested or not. The following list shows the default behavior in each case. </p> <ul> <li> <b>Default VPC:</b>true</li> <li> <b>VPC:</b>false</li> </ul> <p> If no DB subnet group has been specified as part of the request and the PubliclyAccessible value has not been set, the DB instance will be publicly accessible. If a specific DB subnet group has been specified as part of the request and the PubliclyAccessible value has not been set, the DB instance will be private. </p>"
+          "documentation":"<p> Specifies the accessibility options for the DB instance. A value of true specifies an Internet-facing instance with a publicly resolvable DNS name, which resolves to a public IP address. A value of false specifies an internal instance with a DNS name that resolves to a private IP address. </p> <p> Default: The default behavior varies depending on whether a VPC has been requested or not. The following list shows the default behavior in each case. </p> <ul> <li> <b>Default VPC:</b> true</li> <li> <b>VPC:</b> false</li> </ul> <p> If no DB subnet group has been specified as part of the request and the PubliclyAccessible value has not been set, the DB instance will be publicly accessible. If a specific DB subnet group has been specified as part of the request and the PubliclyAccessible value has not been set, the DB instance will be private. </p>"
         },
         "AutoMinorVersionUpgrade":{
           "shape":"BooleanOptional",
@@ -6376,7 +6842,7 @@
         },
         "LicenseModel":{
           "shape":"String",
-          "documentation":"<p> License model information for the restored DB instance. </p> <p> Default: Same as source. </p> <p> Valid values: <code>license-included</code> | <code>bring-your-own-license</code> | <code>general-public-license</code> </p>"
+          "documentation":"<p> License model information for the restored DB instance. </p> <p> Default: Same as source. </p> <p> Valid values: <code>license-included</code> | <code>bring-your-own-license</code> | <code>general-public-license</code></p>"
         },
         "DBName":{
           "shape":"String",
@@ -6384,20 +6850,20 @@
         },
         "Engine":{
           "shape":"String",
-          "documentation":"<p> The database engine to use for the new instance. </p> <p>Default: The same as source</p> <p>Constraint: Must be compatible with the engine of the source</p> <p>Example: <code>oracle-ee</code></p>"
+          "documentation":"<p> The database engine to use for the new instance. </p> <p>Default: The same as source</p> <p>Constraint: Must be compatible with the engine of the source</p> <p> Valid Values: <code>MySQL</code> | <code>oracle-se1</code> | <code>oracle-se</code> | <code>oracle-ee</code> | <code>sqlserver-ee</code> | <code>sqlserver-se</code> | <code>sqlserver-ex</code> | <code>sqlserver-web</code> | <code>postgres</code></p>"
         },
         "Iops":{
           "shape":"IntegerOptional",
-          "documentation":"<p> Specifies the amount of provisioned IOPS for the DB instance, expressed in I/O operations per second. If this parameter is not specified, the IOPS value will be taken from the backup. If this parameter is set to 0, the new instance will be converted to a non-PIOPS instance, which will take additional time, though your DB instance will be available for connections before the conversion starts. </p> <p> Constraints: Must be an integer greater than 1000.</p> <p><b>SQL Server</b></p> <p>Setting the IOPS value for the SQL Server database engine is not supported.</p>"
+          "documentation":"<p> Specifies the amount of provisioned IOPS for the DB instance, expressed in I/O operations per second. If this parameter is not specified, the IOPS value will be taken from the backup. If this parameter is set to 0, the new instance will be converted to a non-PIOPS instance, which will take additional time, though your DB instance will be available for connections before the conversion starts. </p> <p> Constraints: Must be an integer greater than 1000.</p> <p> <b>SQL Server</b> </p> <p>Setting the IOPS value for the SQL Server database engine is not supported.</p>"
         },
         "OptionGroupName":{
           "shape":"String",
-          "documentation":"<p> The name of the option group to be used for the restored DB instance.</p> <p> Permanent options, such as the TDE option for Oracle Advanced Security TDE, cannot be removed from an option group, and that option group cannot be removed from a DB instance once it is associated with a DB instance </p>"
+          "documentation":"<p>The name of the option group to be used for the restored DB instance.</p> <p>Permanent options, such as the TDE option for Oracle Advanced Security TDE, cannot be removed from an option group, and that option group cannot be removed from a DB instance once it is associated with a DB instance </p>"
         },
         "Tags":{"shape":"TagList"},
         "StorageType":{
           "shape":"String",
-          "documentation":"<p> Specifies storage type to be associated with the DB Instance. </p> <p> Valid values: <code>standard | gp2 | io1</code> </p> <p> If you specify <code>io1</code>, you must also include a value for the <code>Iops</code> parameter. </p>"
+          "documentation":"<p> Specifies the storage type to be associated with the DB instance. </p> <p> Valid values: <code>standard | gp2 | io1</code></p> <p> If you specify <code>io1</code>, you must also include a value for the <code>Iops</code> parameter. </p> <p> Default: <code>io1</code> if the <code>Iops</code> parameter is specified; otherwise <code>standard</code></p>"
         },
         "TdeCredentialArn":{
           "shape":"String",
@@ -6408,7 +6874,7 @@
           "documentation":"<p> The password for the given ARN from the Key Store in order to access the device. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "RestoreDBInstanceToPointInTimeMessage":{
       "type":"structure",
@@ -6463,7 +6929,7 @@
         },
         "LicenseModel":{
           "shape":"String",
-          "documentation":"<p> License model information for the restored DB instance. </p> <p> Default: Same as source. </p> <p> Valid values: <code>license-included</code> | <code>bring-your-own-license</code> | <code>general-public-license</code> </p>"
+          "documentation":"<p> License model information for the restored DB instance. </p> <p> Default: Same as source. </p> <p> Valid values: <code>license-included</code> | <code>bring-your-own-license</code> | <code>general-public-license</code></p>"
         },
         "DBName":{
           "shape":"String",
@@ -6471,20 +6937,20 @@
         },
         "Engine":{
           "shape":"String",
-          "documentation":"<p> The database engine to use for the new instance. </p> <p>Default: The same as source</p> <p>Constraint: Must be compatible with the engine of the source</p> <p>Example: <code>oracle-ee</code></p>"
+          "documentation":"<p> The database engine to use for the new instance. </p> <p>Default: The same as source</p> <p>Constraint: Must be compatible with the engine of the source</p> <p> Valid Values: <code>MySQL</code> | <code>oracle-se1</code> | <code>oracle-se</code> | <code>oracle-ee</code> | <code>sqlserver-ee</code> | <code>sqlserver-se</code> | <code>sqlserver-ex</code> | <code>sqlserver-web</code> | <code>postgres</code></p>"
         },
         "Iops":{
           "shape":"IntegerOptional",
-          "documentation":"<p> The amount of Provisioned IOPS (input/output operations per second) to be initially allocated for the DB instance. </p> <p> Constraints: Must be an integer greater than 1000.</p> <p><b>SQL Server</b></p> <p>Setting the IOPS value for the SQL Server database engine is not supported.</p>"
+          "documentation":"<p> The amount of Provisioned IOPS (input/output operations per second) to be initially allocated for the DB instance. </p> <p> Constraints: Must be an integer greater than 1000.</p> <p> <b>SQL Server</b> </p> <p>Setting the IOPS value for the SQL Server database engine is not supported.</p>"
         },
         "OptionGroupName":{
           "shape":"String",
-          "documentation":"<p> The name of the option group to be used for the restored DB instance.</p> <p> Permanent options, such as the TDE option for Oracle Advanced Security TDE, cannot be removed from an option group, and that option group cannot be removed from a DB instance once it is associated with a DB instance </p>"
+          "documentation":"<p>The name of the option group to be used for the restored DB instance.</p> <p>Permanent options, such as the TDE option for Oracle Advanced Security TDE, cannot be removed from an option group, and that option group cannot be removed from a DB instance once it is associated with a DB instance </p>"
         },
         "Tags":{"shape":"TagList"},
         "StorageType":{
           "shape":"String",
-          "documentation":"<p> Specifies storage type to be associated with the DB Instance. </p> <p> Valid values: <code>standard | gp2 | io1</code> </p> <p> If you specify <code>io1</code>, you must also include a value for the <code>Iops</code> parameter. </p>"
+          "documentation":"<p> Specifies the storage type to be associated with the DB instance. </p> <p> Valid values: <code>standard | gp2 | io1</code></p> <p> If you specify <code>io1</code>, you must also include a value for the <code>Iops</code> parameter. </p> <p> Default: <code>io1</code> if the <code>Iops</code> parameter is specified; otherwise <code>standard</code></p>"
         },
         "TdeCredentialArn":{
           "shape":"String",
@@ -6495,7 +6961,7 @@
           "documentation":"<p> The password for the given ARN from the Key Store in order to access the device. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "RevokeDBSecurityGroupIngressMessage":{
       "type":"structure",
@@ -6522,7 +6988,7 @@
           "documentation":"<p> The AWS Account Number of the owner of the EC2 security group specified in the <code>EC2SecurityGroupName</code> parameter. The AWS Access Key ID is not an acceptable value. For VPC DB security groups, <code>EC2SecurityGroupId</code> must be provided. Otherwise, EC2SecurityGroupOwnerId and either <code>EC2SecurityGroupName</code> or <code>EC2SecurityGroupId</code> must be provided. </p>"
         }
       },
-      "documentation":"<p> </p>"
+      "documentation":"<p></p>"
     },
     "SNSInvalidTopicFault":{
       "type":"structure",
@@ -6774,6 +7240,12 @@
       "type":"structure",
       "members":{
         "EventSubscription":{"shape":"EventSubscription"}
+      }
+    },
+    "ApplyPendingMaintenanceActionResult":{
+      "type":"structure",
+      "members":{
+        "ResourcePendingMaintenanceActions":{"shape":"ResourcePendingMaintenanceActions"}
       }
     },
     "AuthorizeDBSecurityGroupIngressResult":{

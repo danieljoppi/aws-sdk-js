@@ -200,6 +200,19 @@ describe 'AWS.util.ini', ->
       expect(map.section1.key2).to.equal('value2;value3')
       expect(map.emptysection).to.equal(undefined)
 
+    it 'ignores leading and trailing white space', ->
+      ini = '''
+      [section1] ; comment at end of line
+      \r\tkey1=\t\rvalue1\t\r
+      \v\f\tkey2=value2\f\v
+      \u00a0key3   =  \u00a0value3\u3000
+      [emptysection]
+      '''
+      map = AWS.util.ini.parse(ini)
+      expect(map.section1.key1).to.equal('value1')
+      expect(map.section1.key2).to.equal('value2')
+      expect(map.section1.key3).to.equal('value3')
+
 describe 'AWS.util.buffer', ->
   describe 'concat', ->
     it 'concatenates a list of buffers', ->
@@ -281,16 +294,9 @@ describe 'AWS.util.crypto', ->
           done()
 
     if AWS.util.isBrowser()
-      it 'handles ArrayBuffers', (done) ->
-        result = '01d448afd928065458cf670b60f5a594d735af0172c8d67f22a81680132681ca'
-        util.sha256 new ArrayBuffer(10), 'hex', (e, d) ->
-          expect(e).to.eql(null)
-          expect(d).to.equal(result)
-          done()
-
-      it 'handles large ArrayBuffers', (done) ->
-        result = 'fd2a4f95c056f31be0b80c8063950008563a700ebfb94c00aa62df90d6d62a03'
-        util.sha256 new ArrayBuffer(1024 * 1024 + 256), 'hex', (e, d) ->
+      it 'handles Blobs (no phantomjs)', (done) ->
+        result = 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'
+        util.sha256 new Blob([1,2,3]), 'hex', (e, d) ->
           expect(e).to.eql(null)
           expect(d).to.equal(result)
           done()
@@ -590,3 +596,59 @@ describe 'AWS.util.jamespath', ->
 
     it 'returns null if no match is found', ->
       expect(find('invalid.*', foo: bar: 1, baz: 2)).not.to.exist
+
+describe 'AWS.util.hoistPayloadMember', ->
+  hoist = AWS.util.hoistPayloadMember
+
+  service = null
+  buildService = (api) ->
+    service = new AWS.Service endpoint: 'http://localhost', apiConfig: api
+
+  it 'hoists structure payload members', ->
+    api =
+      'metadata': 'protocol': 'rest-xml'
+      'operations': 'sample': 'output': 'shape': 'OutputShape'
+      'shapes':
+        'OutputShape':
+          'type': 'structure'
+          'payload': 'Data'
+          'members':
+            'Data': 'shape': 'SingleStructure'
+        'StringType': 'type': 'string'
+        'SingleStructure':
+          'type': 'structure'
+          'members': 'Foo': 'shape': 'StringType'
+    httpResp =
+      'status_code': 200
+      'headers': 'X-Foo': 'baz'
+      'body': '<OperationNameResponse><Foo>abc</Foo></OperationNameResponse>'
+    buildService(api)
+    helpers.mockHttpResponse httpResp.status_code, httpResp.headers, httpResp.body
+    req = service.sample()
+    req.send()
+    hoist(req.response)
+    expect(req.response.data.Foo).to.eql('abc')
+    expect(req.response.data.Data.Foo).to.eql('abc')
+
+  it 'does not hoist streaming payload members', ->
+    api =
+      'metadata': 'protocol': 'rest-xml'
+      'operations': 'sample': 'output': 'shape': 'OutputShape'
+      'shapes':
+        'OutputShape':
+          'type': 'structure'
+          'payload': 'Stream'
+          'members': 'Stream': 'shape': 'BlobStream'
+        'BlobStream':
+          'type': 'blob'
+          'streaming': true
+    httpResp =
+      'status_code': 200
+      'headers': {}
+      'body': 'abc'
+    buildService(api)
+    helpers.mockHttpResponse httpResp.status_code, httpResp.headers, httpResp.body
+    req = service.sample()
+    req.send()
+    hoist(req.response)
+    expect(req.response.data.Stream.toString()).to.eql('abc')
